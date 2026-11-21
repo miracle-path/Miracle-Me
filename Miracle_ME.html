@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miracle Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;0,600;0,700;1,400&family=Kanit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+@font-face {
+    font-family: 'TH SarabunPSK';
+    font-weight: bold;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/THSarabunNew/THSarabunNew-Bold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/THSarabunNew/THSarabunNew-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'TH SarabunPSK';
+    font-weight: normal;
+    font-display: swap;
+    src: url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/THSarabunNew/THSarabunNew.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/THSarabunNew/THSarabunNew.woff') format('woff');
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Sarabun', sans-serif;
+    background: #f0f7f0;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ── HERO BANNER ── */
+.hero {
+    background: linear-gradient(135deg, #c8e6c0 0%, #dff0d8 40%, #e8f5e2 100%);
+    border-radius: 20px;
+    padding: 28px 36px 0 36px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    min-height: 170px;
+}
+
+.hero-deco {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.hero-deco span {
+    position: absolute; font-size: 22px; opacity: 0.45;
+    animation: float 4s ease-in-out infinite;
+}
+.hero-deco span:nth-child(1)  { top:12%; left:2%;   animation-delay:0s; }
+.hero-deco span:nth-child(2)  { top:60%; left:5%;   animation-delay:0.5s; }
+.hero-deco span:nth-child(3)  { top:80%; left:1%;   animation-delay:1s; font-size:16px; }
+.hero-deco span:nth-child(4)  { top:10%; right:20%; animation-delay:0.3s; font-size:16px; }
+.hero-deco span:nth-child(5)  { top:30%; right:13%; animation-delay:0.8s; }
+.hero-deco span:nth-child(6)  { top:5%;  right:5%;  animation-delay:1.2s; font-size:18px; }
+.hero-deco span:nth-child(7)  { top:55%; right:22%; animation-delay:1.5s; font-size:14px; }
+.hero-deco span:nth-child(8)  { top:70%; right:8%;  animation-delay:0.2s; }
+.hero-deco span:nth-child(9)  { top:85%; right:30%; animation-delay:0.7s; font-size:13px; }
+.hero-deco span:nth-child(10) { top:40%; left:14%;  animation-delay:1.8s; font-size:14px; }
+@keyframes float {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(8deg); }
+}
+
+.hero-text { flex: 1; padding-bottom: 24px; position: relative; z-index: 1; }
+
+.hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.55); border-radius: 20px;
+    padding: 4px 14px; font-size: 12px; font-weight: 700;
+    color: #3a7a3a; letter-spacing: 0.5px; margin-bottom: 8px;
+}
+
+.hero-title {
+    font-size: 40px; font-weight: 800; color: #2d6a2d;
+    line-height: 1.1; margin-bottom: 6px;
+}
+
+.hero-sub { font-size: 15px; color: #4a7c4a; line-height: 1.5; }
+
+.hero-img {
+    width: 175px; flex-shrink: 0;
+    align-self: flex-end;
+    position: relative; z-index: 1;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
+}
+.hero-img img { width: 100%; display: block; }
+
+/* speech bubble */
+.hero-bubble {
+    position: absolute; top: 18px; right: 155px;
+    background: white; border-radius: 50%; width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    z-index: 2;
+}
+.hero-bubble::after {
+    content:''; position:absolute; bottom:-8px; right:14px;
+    width:0; height:0;
+    border-left:8px solid transparent;
+    border-right:4px solid transparent;
+    border-top:10px solid white;
+}
+
+/* ── MAIN CARD ── */
+.main-card {
+    background: white; border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    max-width: 900px; margin: 0 auto;
+    overflow: hidden;
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+    background: #3a8a3a; color: white;
+    font-size: 15px; font-weight: 700;
+    padding: 10px 20px; border-radius: 8px;
+    display: inline-block; margin-bottom: 18px;
+}
+
+/* ── BODY LAYOUT ── */
+.card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.panel-left {
+    padding: 24px 22px 20px 24px;
+    border-right: 1px solid #eee;
+}
+
+.panel-right {
+    padding: 24px 24px 20px 22px;
+    display: flex; flex-direction: column;
+}
+
+/* ── FORM FIELDS ── */
+.field-label {
+    font-size: 13px; font-weight: 700; color: #333;
+    margin-bottom: 6px; display: block;
+}
+
+.field-group { margin-bottom: 14px; }
+
+.styled-select {
+    width: 100%; padding: 10px 14px;
+    border: 1.5px solid #ccc; border-radius: 10px;
+    font-size: 14px; font-family: 'Sarabun', sans-serif;
+    background: white; cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    color: #333;
+}
+.styled-select:focus { outline: none; border-color: #3a8a3a; }
+
+.styled-textarea {
+    width: 100%; padding: 10px 12px;
+    border: 1.5px solid #ccc; border-radius: 10px;
+    font-size: 14px; font-family: 'Sarabun', sans-serif;
+    resize: vertical; min-height: 70px; color: #333;
+}
+.styled-textarea:focus { outline: none; border-color: #3a8a3a; }
+
+.styled-input {
+    width: 100%; padding: 10px 14px;
+    border: 1.5px solid #ccc; border-radius: 10px;
+    font-size: 14px; font-family: 'Sarabun', sans-serif;
+    color: #333;
+}
+.styled-input:focus { outline: none; border-color: #3a8a3a; }
+
+.input-suffix {
+    display: flex; align-items: center; gap: 0;
+}
+.input-suffix .styled-input { border-radius: 10px 0 0 10px; flex: 1; }
+.input-suffix .suffix-label {
+    background: #f0f0f0; border: 1.5px solid #ccc; border-left: none;
+    border-radius: 0 10px 10px 0; padding: 10px 14px;
+    font-size: 14px; color: #666;
+}
+
+/* ── SHAPE RADIO BUTTONS ── */
+.shape-group {
+    display: flex; gap: 8px;
+}
+.shape-btn {
+    flex: 1; padding: 8px 6px;
+    border: 1.5px solid #ccc; border-radius: 10px;
+    background: white; cursor: pointer;
+    font-family: 'Sarabun', sans-serif; font-size: 13px;
+    color: #555; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    transition: all 0.15s;
+}
+.shape-btn:hover { border-color: #3a8a3a; background: #f0faf0; }
+.shape-btn.active { border-color: #3a8a3a; background: #edf7ed; color: #2d6a2d; font-weight: 700; }
+.shape-icon { font-size: 18px; line-height: 1; }
+
+/* ── FONT SIZE BUTTONS ── */
+.font-size-group {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px;
+}
+.fsize-btn {
+    min-width: 36px; padding: 6px 8px;
+    border: 1.5px solid #ccc; border-radius: 8px;
+    background: white; cursor: pointer;
+    font-family: 'Sarabun', sans-serif; font-size: 13px; font-weight: 600;
+    color: #555; text-align: center; line-height: 1;
+    transition: all 0.15s;
+}
+.fsize-btn:hover { border-color: #3a8a3a; background: #f0faf0; color: #2d6a2d; }
+.fsize-btn.active {
+    border-color: #3a8a3a; background: #3a8a3a;
+    color: white; font-weight: 700;
+}
+
+/* ── INK COLOR BUTTONS ── */
+.ink-group { display: flex; gap: 10px; align-items: center; }
+.ink-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 3px solid transparent; cursor: pointer;
+    transition: all 0.15s; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: white;
+}
+.ink-btn.active { border-color: #2d6a2d; transform: scale(1.12); }
+.ink-btn:hover { transform: scale(1.08); }
+.ink-label { font-size: 12px; color: #555; margin-left: 4px; }
+
+/* ── PREVIEW PANEL ── */
+.preview-header {
+    background: #3a8a3a; color: white;
+    font-size: 14px; font-weight: 700;
+    padding: 8px 16px; border-radius: 8px;
+    display: inline-block; margin-bottom: 14px;
+}
+
+.preview-box {
+    flex: 1; border: 1.5px dashed #ccc; border-radius: 12px;
+    background: #fafafa; display: flex; align-items: center;
+    justify-content: center; min-height: 160px;
+    overflow: hidden; position: relative;
+}
+
+.preview-box img {
+    max-width: 100%; max-height: 220px; object-fit: contain;
+}
+
+.preview-placeholder {
+    color: #bbb; font-size: 13px; text-align: center;
+}
+
+.preview-actions {
+    display: flex; gap: 10px; margin-top: 12px;
+}
+
+/* ── BUTTONS ── */
+.btn {
+    padding: 11px 18px; border-radius: 10px;
+    font-weight: 700; cursor: pointer; border: none;
+    font-size: 14px; font-family: 'Sarabun', sans-serif;
+    transition: all 0.15s; display: flex; align-items: center; gap: 6px;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+.btn:active { transform: translateY(0); }
+.btn-green  { background: #3a8a3a; color: white; flex: 1; justify-content: center; }
+.btn-outline { background: white; color: #3a8a3a; border: 2px solid #3a8a3a; flex: 1; justify-content: center; }
+
+/* ── FOOTER NOTE ── */
+.card-footer {
+    border-top: 1px solid #eee;
+    padding: 10px 24px;
+    font-size: 12px; color: #888;
+    display: flex; align-items: center; gap: 6px;
+}
+
+canvas { display: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+    .card-body { grid-template-columns: 1fr; }
+    .panel-left { border-right: none; border-bottom: 1px solid #eee; }
+    .hero { flex-direction: column; padding: 20px 20px 0; min-height: unset; }
+    .hero-img { width: 130px; align-self: flex-end; }
+    .hero-title { font-size: 30px; }
+    .hero-bubble { right: 110px; }
+}
+
+
+/* ── CLEAN WHITE + GREEN THEME ── */
+body { background:#f7faf7; padding:24px; color:#1f2937; }
+.hero {
+  background:#fff; border:1px solid #e3eee5; border-radius:16px;
+  box-shadow:0 4px 18px rgba(20,80,40,.045); min-height:150px;
+  padding:24px 30px 0; margin-bottom:18px;
+}
+.hero-deco { display:none; }
+.hero-badge { background:#f0f8f1; color:#24733d; border:1px solid #dcefe0; }
+.hero-title { color:#174b2b; font-weight:700; }
+.hero-sub { color:#647568; }
+.hero-bubble { background:#f1f8f2; box-shadow:none; color:#267341; }
+.hero-bubble::after { border-top-color:#f1f8f2; }
+.hero-img { filter:none; }
+.main-card { border:1px solid #e5ece6; box-shadow:0 5px 24px rgba(25,65,35,.055); border-radius:16px; }
+.section-header, .preview-header {
+  background:#f1f8f2; color:#24683a; border:1px solid #deeee1;
+  border-radius:8px; font-weight:700;
+}
+.panel-left { border-right:1px solid #edf2ed; }
+.field-label { color:#37483b; }
+.styled-select, .styled-textarea, .styled-input {
+  border:1px solid #d7e2d8; border-radius:8px; background:#fff; color:#26352b;
+}
+.styled-select:focus, .styled-textarea:focus, .styled-input:focus {
+  outline:none; border-color:#58a66d; box-shadow:0 0 0 3px rgba(72,153,94,.10);
+}
+.input-suffix .suffix-label { background:#f5f8f5; border-color:#d7e2d8; color:#647568; }
+.shape-btn, .fsize-btn { border:1px solid #d7e2d8; border-radius:8px; color:#526257; }
+.shape-btn:hover, .fsize-btn:hover { border-color:#6bb27d; background:#f4faf5; }
+.shape-btn.active { border-color:#58a66d; background:#edf7ef; color:#24683a; }
+.fsize-btn.active { border-color:#34854d; background:#34854d; color:white; }
+.ink-btn.active { border-color:#34854d; }
+.preview-box { border:1px dashed #cbd9ce; border-radius:10px; background:#fbfdfb; }
+.preview-placeholder { color:#94a39a; }
+.btn { border-radius:8px; }
+.btn-green { background:#34854d; color:white; }
+.btn-green:hover { background:#28723f; }
+.btn-outline { border:1px solid #34854d; color:#34854d; }
+.btn-outline:hover { background:#f2faf3; }
+.card-footer { border-top:1px solid #edf2ed; color:#758278; }
+@media (max-width:640px) {
+  body { padding:12px; }
+  .hero { padding:20px 20px 0; }
+}
+
+#fontSize { max-width: 120px; font-size: 16px; font-weight: 600; }
+
+/* Miracle Me multi-tool shell */
+body{background:#f5f7f6;color:#25332c;font-family:'Sarabun',sans-serif}
+#homeMenu{max-width:1100px;margin:48px auto;padding:30px}
+.mm-brand{font-size:38px;font-weight:800;letter-spacing:-1px;color:#184c31}
+.mm-sub{color:#718178;margin:8px 0 28px}
+.mm-menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.mm-menu-card{background:#fff;border:1px solid #e3eae5;border-radius:18px;padding:30px;cursor:pointer;transition:.2s;box-shadow:0 5px 20px #183d2610}
+.mm-menu-card:hover{transform:translateY(-3px);border-color:#86b997;box-shadow:0 12px 28px #183d2616}
+.mm-card-icon{width:56px;height:56px;border-radius:14px;background:#eaf5ed;color:#277347;display:flex;align-items:center;justify-content:center;font-size:27px;margin-bottom:18px}
+.mm-menu-card h2{font-size:22px;color:#204b31;margin-bottom:8px}.mm-menu-card p{color:#68766d;line-height:1.6}
+.mm-topbar{max-width:1100px;margin:0 auto 18px;display:flex;align-items:center;gap:14px;padding:8px 4px}
+.mm-back{border:1px solid #dbe5de;background:white;color:#2a7045;border-radius:9px;padding:9px 16px;cursor:pointer;font:600 15px Sarabun,sans-serif}
+.mm-page-title{font-size:20px;font-weight:700;color:#204b31}
+#appStamp,#appPaper,#appSticker{display:none;max-width:1100px;margin:auto}
+#appStamp .hero,#appStamp .main-card{max-width:100%}
+#appPaper .paper-card,
+#appSticker .paper-card{background:white;border:1px solid #e1e9e3;border-radius:16px;padding:24px;box-shadow:0 5px 24px #193b2510}
+.paper-grid{display:grid;grid-template-columns:330px 1fr;gap:24px;align-items:start}
+.paper-fields{display:flex;flex-direction:column;gap:15px}
+.paper-preview-wrap{min-width:0}
+.paper-preview{background:#f9fbfa;border:1px solid #e2e9e4;border-radius:12px;padding:16px;overflow:auto;display:flex;justify-content:center;align-items:center;min-height:440px}
+.paper-sheet{width:330px;height:483px;background:white;border:1px solid #aab4ae;box-shadow:0 2px 8px #0001;position:relative;transform-origin:top center;flex-shrink:0}
+.paper-piece{position:absolute;background:#ffd9a8;border:1px solid #e87520;display:flex;align-items:center;justify-content:center;color:#8b4315;font-size:10px;overflow:hidden;box-sizing:border-box}.paper-trim{position:absolute;left:3px;top:3px;right:3px;bottom:3px;background:#e9f4ed;border:1px dashed #318354;display:flex;align-items:center;justify-content:center;color:#256641;overflow:hidden;box-sizing:border-box}.paper-safe-area{position:absolute;inset:5px;border:1px dashed #9aa69e;pointer-events:none}
+.paper-result{font-size:24px;font-weight:800;color:#24683a;margin:16px 0 8px}.paper-note{font-size:13px;color:#758278}
+.paper-btn{background:#34854d;color:white;border:0;border-radius:8px;padding:11px 16px;cursor:pointer;font:600 15px Sarabun,sans-serif}
+@media(max-width:800px){.mm-menu-grid,.paper-grid{grid-template-columns:1fr}#homeMenu{padding:16px;margin:20px auto}.paper-preview{min-height:300px}}
+
+
+/* Miracle Me homepage — visual system matched to Homepage-Design.PNG */
+body{background:#f2f3f4;padding:28px 24px;color:#252525}
+.mm-home{width:min(1207px,100%);min-height:min(803px,calc(100vh - 56px));margin:0 auto;display:grid;grid-template-columns:1.08fr .88fr .88fr;gap:22px;align-items:stretch;padding:0;background:transparent}
+.mm-brand-panel{display:flex;flex-direction:column;justify-content:space-between;min-width:0;padding:22px 0 4px 4px}
+.mm-wordmark{font-family:Arial,sans-serif;font-weight:900;line-height:.82;letter-spacing:-3px;color:#35b653;display:flex;flex-direction:column;align-items:flex-start;white-space:nowrap}
+.mm-wordmark span{font-size:clamp(40px,6.2vw,86px)}
+.mm-wordmark strong{font-size:clamp(100px,16vw,205px);font-weight:900;letter-spacing:-9px}
+.mm-mascot{width:min(88%,310px);height:auto;align-self:center;margin:20px 0 0}
+.mm-menu-column{display:grid;grid-template-rows:1fr 1fr;gap:12px;min-height:0}
+.mm-stamp-column{min-height:0}
+.mm-tile{padding:0;border:6px solid #252525;border-radius:34px;overflow:hidden;position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;width:100%;height:100%;cursor:pointer;box-shadow:7px 9px 12px #0003;transition:transform .18s,box-shadow .18s;font-family:'Sarabun',sans-serif}
+.mm-tile:hover{transform:translateY(-3px);box-shadow:9px 13px 18px #0003}
+.mm-tile:focus-visible{outline:4px solid #35b653;outline-offset:4px}
+.mm-paper-tile{background:#c92b2b;border-color:#702222}
+.mm-locked-tile{background:#999b9d;border-color:#343434;cursor:not-allowed;box-shadow:7px 9px 12px #0003}
+.mm-locked-tile:hover{transform:none}
+.mm-stamp-tile{background:#2d4db5;border-color:#24276c}
+.mm-art{flex:1;min-height:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.mm-paper-art{background:repeating-conic-gradient(from 18deg at 50% 45%,#b82020 0 14deg,#d83232 14deg 34deg,#a91d1d 34deg 49deg);}
+.paper-stack{position:relative;width:74%;height:76%;transform:rotate(4deg)}
+.paper-stack i{position:absolute;inset:0;background:#fff;border:1.5px solid #a91d1d;box-shadow:3px 3px 0 #eee}
+.paper-stack i:nth-child(1){transform:translate(18px,-12px)}.paper-stack i:nth-child(2){transform:translate(10px,-7px)}.paper-stack i:nth-child(3){transform:translate(4px,-3px)}
+.paper-grid-art{position:absolute;inset:4px;background-color:#f4cccc;background-image:linear-gradient(#d84a4a 1px,transparent 1px),linear-gradient(90deg,#d84a4a 1px,transparent 1px);background-size:25% 25%;border:1px solid #c52c2c}
+.mm-tile-label{height:76px;flex:0 0 76px;display:flex;align-items:center;justify-content:center;font-size:clamp(28px,3.8vw,48px);font-weight:800;line-height:1;color:#fff;background:#8f1d1d}
+.mm-locked-tile .mm-art{background:#a5a7a9}
+.mm-lock-art svg{height:72%;max-height:190px;filter:drop-shadow(6px 8px 5px #3336)}
+.mm-locked-tile .mm-tile-label{background:#696b6d;color:#aeb0b2}
+.mm-stamp-art{background:linear-gradient(120deg,#315bd0 0%,#75a5ff 100%)}
+.mm-stamp-art svg{width:100%;height:100%;object-fit:cover}
+.mm-stamp-tile .mm-tile-label{height:84px;flex-basis:84px;background:#1f3d83;font-size:clamp(34px,4vw,52px)}
+#appStamp,#appPaper,#appSticker{max-width:1200px;margin:0 auto}
+.mm-topbar{max-width:none;margin:0 auto 18px;padding:0}
+@media(max-width:760px){body{padding:14px}.mm-home{min-height:auto;grid-template-columns:1fr 1fr;gap:14px}.mm-brand-panel{grid-column:1/-1;min-height:230px;flex-direction:row;align-items:center;padding:10px}.mm-wordmark span{font-size:42px}.mm-wordmark strong{font-size:100px}.mm-mascot{width:150px;margin:0}.mm-menu-column{min-height:430px}.mm-stamp-column{min-height:430px}.mm-tile{border-width:4px;border-radius:24px}.mm-tile-label{height:62px;flex-basis:62px;font-size:30px}}
+@media(max-width:460px){.mm-home{grid-template-columns:1fr}.mm-brand-panel{min-height:190px}.mm-menu-column{min-height:420px}.mm-stamp-column{min-height:330px}.mm-stamp-tile .mm-art{min-height:240px}}
+
+/* ============ Paper tool — game style UI ============ */
+#appPaper,
+
+/* ============ Paper tool — game style UI ============ */
+#appSticker{--ink:#1c2b22;--g1:#44d96f;--g2:#1f9d47;--gd:#12652e;--yel:#ffd23f;--yd:#d9a300;--cream:#fff7df;font-family:'Kanit','Sarabun',sans-serif;color:var(--ink)}
+#appPaper .mm-topbar,
+#appSticker .mm-topbar{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+#appPaper .mm-back,
+#appSticker .mm-back{font:600 15px 'Kanit',sans-serif;color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:14px;padding:8px 16px;box-shadow:0 4px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+#appPaper .mm-back:hover,
+#appSticker .mm-back:hover{background:#f1fbf3}
+#appPaper .mm-back:active,
+#appSticker .mm-back:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+#appPaper .mm-page-title,
+#appSticker .mm-page-title{font:800 26px 'Kanit',sans-serif;color:#fff;background:#c92b2b;border:3px solid var(--ink);border-radius:14px;padding:4px 18px;box-shadow:0 4px 0 var(--ink);letter-spacing:.3px}
+.pp-card{background:radial-gradient(circle at 20% 0%,#ffffff 0,#eaf8ed 70%);border:4px solid var(--ink);border-radius:30px;padding:22px;box-shadow:8px 10px 0 #1c2b2226}
+.pp-grid{display:grid;grid-template-columns:360px minmax(0,1fr);gap:22px;align-items:start}
+.pp-panel{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:14px;box-shadow:0 5px 0 var(--ink)}
+.pp-head{display:flex;align-items:center;gap:10px;font:800 19px 'Kanit',sans-serif}
+.pp-head i{width:40px;height:40px;border-radius:12px;background:var(--yel);border:3px solid var(--ink);display:grid;place-items:center;font-style:normal;font-size:20px;box-shadow:0 3px 0 var(--ink)}
+.pp-unit{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#dcebe0;padding:5px;border-radius:16px;border:3px solid var(--ink)}
+.pp-unit button{border:0;border-radius:11px;padding:7px 0;font:700 16px 'Kanit',sans-serif;background:transparent;color:#4b6455;cursor:pointer;transition:transform .08s}
+.pp-unit button:hover{background:#ffffff80}
+.pp-unit button.on{background:linear-gradient(var(--g1),var(--g2));color:#fff;box-shadow:0 3px 0 var(--gd);text-shadow:0 1px 0 #0003;transform:translateY(-1px)}
+.pp-field label{display:block;font:600 13px 'Kanit',sans-serif;color:#4b6455;margin-bottom:6px;letter-spacing:.2px}
+.pp-input{display:flex;align-items:stretch;border:3px solid var(--ink);border-radius:15px;overflow:hidden;background:#fff;transition:box-shadow .15s}
+.pp-input:focus-within{box-shadow:0 0 0 4px #44d96f66}
+.pp-input input{flex:1;min-width:0;width:100%;border:0;outline:0;padding:8px 4px;font:700 24px 'Kanit',sans-serif;text-align:center;color:var(--ink);background:transparent;-moz-appearance:textfield}
+.pp-input input::-webkit-outer-spin-button,.pp-input input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.pp-u{align-self:center;font:700 13px 'Kanit',sans-serif;color:#fff;background:var(--ink);border-radius:8px;padding:2px 9px;margin-right:8px;min-width:44px;text-align:center}
+.pp-step{width:46px;border:0;background:#dcebe0;font:800 24px 'Kanit',sans-serif;color:var(--ink);cursor:pointer;transition:background .1s}
+.pp-step:first-child{border-right:3px solid var(--ink)}.pp-step:last-child{border-left:3px solid var(--ink)}
+.pp-step:hover{background:#c5e3cd}.pp-step:active{background:var(--g1)}
+.pp-bleed{display:flex;gap:10px;align-items:center;background:var(--cream);border:3px dashed var(--yd);border-radius:15px;padding:10px 12px;font:500 13px/1.45 'Kanit',sans-serif;color:#6b4e00}
+.pp-bleed .lock{font-size:22px;flex:0 0 auto}.pp-bleed b{font-weight:700;color:#8a5a00}
+.pp-go{border:3px solid var(--ink);border-radius:16px;padding:12px;font:800 19px 'Kanit',sans-serif;color:#fff;cursor:pointer;background:linear-gradient(#ffb02e,#ff7a1a);text-shadow:0 2px 0 #0003;box-shadow:0 6px 0 #a64a00;transition:transform .08s,box-shadow .08s,filter .15s}
+.pp-go:hover{filter:brightness(1.07)}
+.pp-go:active{transform:translateY(5px);box-shadow:0 1px 0 #a64a00}
+.pp-score{background:var(--ink);color:#fff;border-radius:18px;padding:14px 16px 16px;border:3px solid #000}
+.pp-score-top{display:flex;justify-content:space-between;align-items:center;font:600 13px 'Kanit',sans-serif;color:#9fd6af;letter-spacing:.5px}
+#appPaper .paper-result,
+#appSticker .paper-result{margin:2px 0 8px;font:600 15px 'Kanit',sans-serif;color:#fff;display:flex;align-items:baseline;gap:8px;min-height:62px}
+#appPaper .paper-result b,
+#appSticker .paper-result b{font:800 56px/1 'Kanit',sans-serif;color:var(--yel);text-shadow:0 3px 0 #0008}
+#appPaper .paper-result small,
+#appSticker .paper-result small{font:700 20px 'Kanit',sans-serif;color:#fff}
+#appPaper .paper-result.err,
+#appSticker .paper-result.err{color:#ff9d9d;font-size:15px;align-items:center}
+#appPaper .paper-result.pop,
+#appSticker .paper-result.pop{animation:ppPop .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes ppPop{0%{transform:scale(.7);opacity:.3}100%{transform:scale(1);opacity:1}}
+.pp-xp{height:14px;border-radius:99px;background:#34463b;overflow:hidden;border:2px solid #000}
+.pp-xp i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--yel),var(--g1));border-radius:99px;transition:width .6s cubic-bezier(.2,.9,.3,1)}
+#appPaper .paper-note,
+#appSticker .paper-note{font:400 12.5px/1.5 'Kanit',sans-serif;color:#5d7165}
+.pp-preview-wrap{min-width:0}
+#appPaper .paper-preview,
+#appSticker .paper-preview{border:3px solid var(--ink);border-radius:22px;min-height:520px;padding:20px;background-color:#d6efdc;background-image:linear-gradient(#ffffff55 2px,transparent 2px),linear-gradient(90deg,#ffffff55 2px,transparent 2px);background-size:28px 28px;box-shadow:inset 0 3px 10px #0002,0 5px 0 var(--ink);position:relative}
+#appPaper .paper-sheet,
+#appSticker .paper-sheet{border:2px solid var(--ink);box-shadow:6px 8px 0 #1c2b2244;border-radius:3px}
+#appPaper .paper-piece,
+#appSticker .paper-piece{border:1px solid #d86a10;border-radius:2px;background:#ffcf8f;animation:ppIn .35s cubic-bezier(.2,1.5,.4,1) both;font-family:'Kanit',sans-serif}
+#appPaper .paper-trim,
+#appSticker .paper-trim{background:#d9f5e1;border:1px dashed #1f9d47;color:#14602f;font:600 10px 'Kanit',sans-serif}
+@keyframes ppIn{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.pp-tag{position:absolute;top:10px;left:12px;font:700 12px 'Kanit',sans-serif;background:var(--ink);color:#fff;border-radius:99px;padding:3px 12px}
+.pp-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pp-legend span{display:inline-flex;align-items:center;gap:7px;font:500 12.5px 'Kanit',sans-serif;background:#fff;border:2px solid var(--ink);border-radius:99px;padding:3px 12px 3px 8px}
+.pp-legend em{width:14px;height:14px;border-radius:4px;border:2px solid var(--ink);display:inline-block}
+@media(max-width:800px){.pp-grid{grid-template-columns:1fr}.pp-card{padding:14px;border-radius:24px}#appPaper .paper-preview,#appSticker .paper-preview{min-height:300px}}
+
+/* ============ Global game theme + Homepage ============ */
+:root{--ink:#1c2b22;--g1:#44d96f;--g2:#1f9d47;--gd:#12652e;--yel:#ffd23f;--yd:#d9a300;--cream:#fff7df}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Kanit','Sarabun',sans-serif;background-color:#e9f6ec;background-image:radial-gradient(#cfe9d6 2px,transparent 2.5px);background-size:26px 26px;color:var(--ink)}
+.mm-wordmark{font-family:'Kanit',Arial,sans-serif;color:#3fd36a;text-shadow:3px 5px 0 #14502a;letter-spacing:-2px}
+.mm-wordmark strong{font-weight:900;letter-spacing:-6px}
+.mm-wordmark span{font-weight:900}
+.mm-mascot{animation:mmFloat 3.6s ease-in-out infinite;filter:drop-shadow(0 10px 0 #1c2b2222)}
+@keyframes mmFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-10px) rotate(1.5deg)}}
+.mm-tile{font-family:'Kanit',sans-serif;box-shadow:0 9px 0 #1c2b2240;transition:transform .12s,box-shadow .12s}
+.mm-tile:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 15px 0 #1c2b2230}
+.mm-tile:active{transform:translateY(4px);box-shadow:0 3px 0 #1c2b2240}
+.mm-locked-tile:hover,.mm-locked-tile:active{transform:none;box-shadow:0 9px 0 #1c2b2240}
+.mm-tile-label{font-family:'Kanit',sans-serif;font-weight:800;letter-spacing:.5px;text-shadow:0 3px 0 #0003}
+.mm-soon{position:absolute;top:14px;right:14px;z-index:2;font:700 13px 'Kanit',sans-serif;background:var(--yel);color:var(--ink);border:3px solid var(--ink);border-radius:99px;padding:2px 12px;transform:rotate(6deg);box-shadow:0 3px 0 var(--ink)}
+.mm-play{position:absolute;left:14px;top:14px;z-index:2;font:800 13px 'Kanit',sans-serif;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:99px;padding:2px 12px;box-shadow:0 3px 0 var(--ink)}
+.mm-paper-art,.mm-stamp-art{position:relative}
+
+@media(max-width:980px){
+  body{padding:16px}
+  #homeMenu{margin:8px auto;padding:0;max-width:760px}
+  .mm-home{grid-template-columns:1fr 1fr;min-height:0;gap:16px}
+  .mm-brand-panel{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;padding:6px 10px;min-height:0}
+  .mm-wordmark span{font-size:clamp(38px,9vw,70px)}
+  .mm-wordmark strong{font-size:clamp(90px,22vw,170px)}
+  .mm-mascot{width:clamp(120px,26vw,210px);margin:0}
+  .mm-menu-column{min-height:460px}
+  .mm-stamp-column{min-height:460px}
+}
+@media(max-width:560px){
+  body{padding:12px}
+  .mm-home{grid-template-columns:1fr;gap:16px}
+  .mm-brand-panel{padding:0 4px}
+  .mm-menu-column{min-height:0;grid-template-rows:none;gap:16px}
+  .mm-tile{min-height:200px;border-width:4px;border-radius:26px}
+  .mm-stamp-column{min-height:0}
+  .mm-stamp-tile{min-height:280px}
+  .mm-tile-label,.mm-stamp-tile .mm-tile-label{height:64px;flex-basis:64px;font-size:30px}
+}
+
+/* ============ Stamp designer — game UI ============ */
+#appStamp,#appPaper,#appSticker{padding-bottom:24px}
+#appStamp{font-family:'Kanit','Sarabun',sans-serif;color:var(--ink)}
+#appStamp .mm-topbar{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+#appStamp .mm-back{font:600 15px 'Kanit',sans-serif;color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:14px;padding:8px 16px;box-shadow:0 4px 0 var(--ink);transition:transform .08s,box-shadow .08s;cursor:pointer}
+#appStamp .mm-back:hover{background:#f1fbf3}
+#appStamp .mm-back:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+#appStamp .mm-page-title{font:800 26px 'Kanit',sans-serif;color:#fff;background:#2d4db5;border:3px solid var(--ink);border-radius:14px;padding:4px 18px;box-shadow:0 4px 0 var(--ink)}
+
+#appStamp .hero{background:linear-gradient(120deg,#d8f6df 0%,#fff7df 100%);border:4px solid var(--ink);border-radius:28px;box-shadow:8px 10px 0 #1c2b2226;min-height:170px;padding:24px 30px 0}
+#appStamp .hero-deco{display:none}
+#appStamp .hero-deco span{opacity:.55}
+#appStamp .hero-badge{font:800 12px 'Kanit',sans-serif;letter-spacing:.6px;background:var(--yel);color:var(--ink);border:3px solid var(--ink);border-radius:99px;padding:2px 14px;box-shadow:0 3px 0 var(--ink)}
+#appStamp .hero-title{font:900 clamp(30px,5vw,46px)/1.1 'Kanit',sans-serif;color:var(--ink);text-shadow:3px 3px 0 #3fd36a}
+#appStamp .hero-sub{font:500 15px/1.55 'Kanit',sans-serif;color:#46604f}
+#appStamp .hero-bubble{background:#fff;border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);color:inherit}
+#appStamp .hero-bubble::after{border-top-color:var(--ink)}
+#appStamp .hero-img{filter:drop-shadow(0 6px 0 #1c2b2222)}
+
+#appStamp .main-card{background:#fff;border:4px solid var(--ink);border-radius:28px;box-shadow:8px 10px 0 #1c2b2226;overflow:hidden}
+#appStamp .panel-left{border-right:3px dashed #bcd8c3}
+#appStamp .section-header,#appStamp .preview-header{display:inline-flex;align-items:center;gap:6px;font:800 16px 'Kanit',sans-serif;color:var(--ink);background:var(--yel);border:3px solid var(--ink);border-radius:12px;padding:4px 16px;box-shadow:0 3px 0 var(--ink)}
+#appStamp .field-label{font:600 13.5px 'Kanit',sans-serif;color:#46604f}
+#appStamp .styled-select,#appStamp .styled-textarea,#appStamp .styled-input{font:500 15px 'Kanit','Sarabun',sans-serif;border:3px solid var(--ink);border-radius:14px;color:var(--ink);background-color:#fff;padding:9px 14px;transition:box-shadow .15s}
+#appStamp .styled-select{padding-right:34px;background-position:right 14px center}
+#appStamp .styled-select:focus,#appStamp .styled-textarea:focus,#appStamp .styled-input:focus{border-color:var(--ink);box-shadow:0 0 0 4px #44d96f66}
+#appStamp .styled-input[type=file]{padding:6px 10px}
+#appStamp #fontSize{font-weight:700;font-size:18px;max-width:140px}
+#appStamp .input-suffix .styled-input{border-radius:14px 0 0 14px}
+#appStamp .input-suffix .suffix-label{font:700 14px 'Kanit',sans-serif;background:var(--ink);color:#fff;border:3px solid var(--ink);border-radius:0 14px 14px 0;display:flex;align-items:center}
+#appStamp .shape-btn{font:600 13px 'Kanit',sans-serif;border:3px solid var(--ink);border-radius:14px;color:var(--ink);box-shadow:0 3px 0 var(--ink);transition:transform .08s,box-shadow .08s,background .15s}
+#appStamp .shape-btn:hover{background:#f1fbf3}
+#appStamp .shape-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+#appStamp .shape-btn.active{background:linear-gradient(var(--g1),var(--g2));color:#fff;border-color:var(--ink);text-shadow:0 1px 0 #0003}
+#appStamp .ink-btn{border:3px solid var(--ink);box-shadow:0 3px 0 var(--ink)}
+#appStamp .ink-btn.active{border-color:var(--ink);transform:scale(1.14);outline:3px solid var(--yel);outline-offset:1px}
+#appStamp .ink-label{font:600 13px 'Kanit',sans-serif;color:var(--ink)}
+#appStamp .preview-box{border:3px solid var(--ink);border-radius:18px;background-color:#d6efdc;background-image:linear-gradient(#ffffff66 2px,transparent 2px),linear-gradient(90deg,#ffffff66 2px,transparent 2px);background-size:24px 24px;box-shadow:inset 0 3px 10px #0002;min-height:220px}
+#appStamp .preview-box img{background:#fff;border:2px solid var(--ink);border-radius:6px;box-shadow:5px 6px 0 #1c2b2230;max-height:260px}
+#appStamp .preview-placeholder{font:600 14px/1.6 'Kanit',sans-serif;color:#46604f}
+#appStamp .preview-actions{flex-wrap:wrap}
+#appStamp .btn{font:800 16px 'Kanit',sans-serif;border:3px solid var(--ink);border-radius:15px;padding:11px 16px;transition:transform .08s,box-shadow .08s,filter .15s}
+#appStamp .btn:hover{transform:none;box-shadow:none;filter:brightness(1.06)}
+#appStamp .btn-green{color:#fff;background:linear-gradient(#ffb02e,#ff7a1a);text-shadow:0 2px 0 #0003;box-shadow:0 5px 0 #a64a00;min-width:150px}
+#appStamp .btn-green:hover{background:linear-gradient(#ffb02e,#ff7a1a);box-shadow:0 5px 0 #a64a00}
+#appStamp .btn-green:active{transform:translateY(4px);box-shadow:0 1px 0 #a64a00}
+#appStamp .btn-outline{color:var(--ink);background:#fff;box-shadow:0 5px 0 var(--ink);min-width:150px}
+#appStamp .btn-outline:hover{background:#f1fbf3}
+#appStamp .btn-outline:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+#appStamp .card-footer{font:500 13px 'Kanit',sans-serif;color:#5d7165;background:var(--cream);border-top:3px dashed var(--yd)}
+
+@media(max-width:800px){
+  #appStamp .card-body{grid-template-columns:1fr}
+  #appStamp .panel-left{border-right:0;border-bottom:3px dashed #bcd8c3}
+  #appStamp .panel-left,#appStamp .panel-right{padding:18px}
+}
+@media(max-width:640px){
+  #appStamp .hero{flex-direction:row;align-items:flex-end;padding:18px 18px 0;min-height:0;border-radius:22px}
+  #appStamp .hero-img{width:100px}
+  #appStamp .hero-bubble{display:none}
+  #appStamp .hero-sub{font-size:13px}
+  #appStamp .main-card{border-radius:22px}
+  #appStamp .mm-page-title,#appPaper .mm-page-title,#appSticker .mm-page-title{font-size:20px}
+  #appStamp .styled-select,#appStamp .styled-textarea,#appStamp .styled-input,#appStamp #fontSize{font-size:16px}
+  .pp-input input{font-size:20px}
+}
+@media(max-width:400px){
+  #appStamp .hero-img{display:none}
+  #appStamp .btn{flex:1 1 100%}
+}
+
+/* ============ GREEN & WHITE THEME (final overrides) ============ */
+:root,#appPaper,#appStamp,#appSticker{--ink:#12361f;--g1:#4be07a;--g2:#1f9d47;--gd:#0f6a2e;--yel:#c9f6d4;--yd:#4fb56c;--cream:#effbf1;--mint:#dff5e5}
+body{background-color:#f3fbf5;background-image:radial-gradient(#d4eddb 2px,transparent 2.5px);color:var(--ink)}
+/* Homepage tiles */
+.mm-wordmark{color:#2fc45a;text-shadow:3px 5px 0 #0f6a2e}
+.mm-paper-tile{background:#2fc45a;border-color:var(--ink)}
+.mm-paper-art{background:repeating-conic-gradient(from 18deg at 50% 45%,#3fd36a 0 14deg,#5fe085 14deg 34deg,#2fb957 34deg 49deg)}
+.paper-stack i{border-color:#1f9d47;box-shadow:3px 3px 0 #e6f5ea}
+.paper-grid-art{background-color:#e6f8ea;background-image:linear-gradient(#7fd495 1px,transparent 1px),linear-gradient(90deg,#7fd495 1px,transparent 1px);border-color:#1f9d47}
+.mm-tile-label,.mm-paper-tile .mm-tile-label{background:#136b30;color:#fff}
+.mm-stamp-tile{background:#1f9d47;border-color:var(--ink)}
+.mm-stamp-art{background:linear-gradient(160deg,#ffffff 0%,#dff5e5 100%)}
+.mm-stamp-art svg{width:100%;height:100%;object-fit:initial}
+.mm-stamp-tile .mm-tile-label{background:#0f5a29}
+.mm-locked-tile{background:#c9d5cd;border-color:#3f5547}
+.mm-locked-tile .mm-art{background:#e3ebe6}
+.mm-lock-art svg path[stroke]{stroke:#8fa296}.mm-lock-art svg rect{fill:#8fa296}.mm-lock-art svg circle,.mm-lock-art svg path[fill="#343434"]{fill:#5b6f62}
+.mm-locked-tile .mm-tile-label{background:#8fa296;color:#eef5f0}
+.mm-soon{background:#fff;color:var(--ink)}
+/* Page titles / buttons: green, not red/blue/orange */
+#appPaper .mm-page-title,#appStamp .mm-page-title,#appSticker .mm-page-title{background:linear-gradient(var(--g1),var(--g2));text-shadow:0 2px 0 #0003}
+.pp-go,#appStamp .btn-green,#appStamp .btn-green:hover{background:linear-gradient(#4be07a,#1f9d47);box-shadow:0 5px 0 #0f6a2e}
+.pp-go:active,#appStamp .btn-green:active{box-shadow:0 1px 0 #0f6a2e}
+.pp-bleed{color:#1d6b38}.pp-bleed b{color:#0f6a2e}
+.pp-score{background:#0f4d25;border-color:#06361a}.pp-score-top{color:#a8e8bb}
+#appPaper .paper-result b,
+#appSticker .paper-result b{color:#c9f6d4}
+.pp-xp{background:#1d6b38}.pp-xp i{background:linear-gradient(90deg,#9cf2b4,#4be07a)}
+.pp-tag{background:#136b30}
+#appPaper .paper-preview,#appStamp .preview-box,
+#appSticker .paper-preview{background-color:#e3f6e8}
+#appPaper .paper-piece,
+#appSticker .paper-piece{background:#bfe9c9;border-color:#2f9a52}
+#appPaper .paper-trim,
+#appSticker .paper-trim{background:#fff;border:1px dashed #1f9d47;color:#136b30}
+/* Stamp page */
+#appStamp .hero{background:linear-gradient(120deg,#ffffff 0%,#dff5e5 100%)}
+#appStamp .hero-badge,#appStamp .section-header,#appStamp .preview-header{background:var(--mint)}
+#appStamp .hero-title{text-shadow:3px 3px 0 #7fe19a}
+#appStamp .ink-btn.active{outline-color:#4be07a}
+#appStamp .card-footer{background:var(--cream)}
+.pp-card{background:radial-gradient(circle at 20% 0%,#fff 0,#e6f8ea 75%)}
+
+/* ============ Sticker tool ============ */
+.pp-unit.two{grid-template-columns:repeat(2,1fr)}
+.pp-unit.two button{font-size:15px;padding:8px 4px}
+.stk-sqm{background:#136b30;border:2px solid #06361a;border-radius:12px;padding:8px 12px;margin:-2px 0 10px;font:700 17px 'Kanit',sans-serif;color:#c9f6d4;display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.stk-sqm small{font:400 12px 'Kanit',sans-serif;color:#a8e8bb}
+.stk-svg{width:100%;max-width:440px;height:auto;display:block;margin-top:18px;filter:drop-shadow(5px 7px 0 #1c2b2230)}
+.stk-piece{transform-box:fill-box;transform-origin:center;animation:ppIn .35s cubic-bezier(.2,1.5,.4,1) both}
+.stk-piece text{font-family:'Kanit',sans-serif;font-weight:600;fill:#136b30;pointer-events:none}
+.pp-legend .dot{width:14px;height:14px;border-radius:50%;background:#231f20;border:2px solid var(--ink);display:inline-block}
+.mm-sticker-tile{background:#4cc97a;border-color:var(--ink)}
+.mm-sticker-tile .mm-tile-label{background:#17743a}
+.mm-sticker-art{background:linear-gradient(160deg,#ffffff 0%,#dff5e5 100%)}
+.mm-sticker-art svg{width:100%;height:100%}
+
+</style>
+</head>
+<body>
+
+<!-- Miracle Me homepage based on Homepage-Design.PNG -->
+<div id="homeMenu" class="mm-home">
+ <section class="mm-brand-panel" aria-label="Miracle Me">
+  <div class="mm-wordmark"><span>MIRACLE</span><strong>ME</strong></div>
+  <svg class="mm-mascot" viewBox="0 0 300 330" role="img" aria-label="Miracle Me robot mascot">
+   <g fill="#9b9d9e">
+    <path d="M92 91 L132 18 L172 91 L151 126 L113 126 Z"/>
+    <path d="M109 128 H153 V151 H109 Z"/>
+    <path d="M105 82 H159 L132 32 Z" fill="#f5f6f6"/>
+    <path d="M105 128 H153 V151 H105 Z"/>
+   </g>
+   <g fill="none" stroke="#343638" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M102 94 Q68 119 57 164"/><path d="M165 94 Q205 78 213 31"/>
+    <path d="M112 151 Q72 184 83 273"/><path d="M151 151 Q195 184 184 273"/>
+   </g>
+   <g fill="#343638"><circle cx="57" cy="164" r="13"/><circle cx="213" cy="31" r="13"/><path d="M69 272 H99 V286 H63 Q60 278 69 272Z"/><path d="M170 272 H199 Q208 278 204 286 H169Z"/></g>
+   <ellipse cx="132" cy="292" rx="94" ry="8" fill="#b9bbbc"/>
+  </svg>
+ </section>
+ <section class="mm-menu-column" aria-label="เมนูเครื่องมือ">
+  <button class="mm-tile mm-paper-tile" onclick="openMMTool('paper')" aria-label="วางงานกระดาษ">
+   <div class="mm-art mm-paper-art"><div class="paper-stack"><i></i><i></i><i></i><div class="paper-grid-art"></div></div></div>
+   <span class="mm-play">▶ เริ่ม</span><span class="mm-tile-label">กระดาษ</span>
+  </button>
+  <button class="mm-tile mm-sticker-tile" onclick="openMMTool('sticker')" aria-label="วางสติกเกอร์">
+   <div class="mm-art mm-sticker-art"><svg viewBox="0 0 300 340" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+    <rect x="46" y="38" width="220" height="290" rx="8" fill="#12361f" opacity=".16"/>
+    <rect x="38" y="30" width="220" height="290" rx="8" fill="#fff" stroke="#12361f" stroke-width="4"/>
+    <g fill="#231f20"><circle cx="56" cy="48" r="7"/><circle cx="240" cy="48" r="7"/><circle cx="56" cy="302" r="7"/><circle cx="240" cy="302" r="7"/></g>
+    <g fill="#c9f6d4" stroke="#1f9d47" stroke-width="3">
+     <circle cx="88" cy="108" r="30"/><circle cx="148" cy="108" r="30"/>
+     <circle cx="118" cy="160" r="30"/><circle cx="178" cy="160" r="30"/>
+     <circle cx="88" cy="212" r="30"/><circle cx="148" cy="212" r="30"/><circle cx="208" cy="212" r="30"/>
+     <circle cx="118" cy="264" r="30"/><circle cx="178" cy="264" r="30"/>
+    </g>
+    <g fill="#fff" opacity=".8"><circle cx="78" cy="98" r="6"/><circle cx="108" cy="150" r="6"/><circle cx="78" cy="202" r="6"/><circle cx="108" cy="254" r="6"/></g>
+    <g transform="translate(14 -12) rotate(8 208 108)">
+     <circle cx="208" cy="116" r="30" fill="#12361f" opacity=".22" transform="translate(5 7)"/>
+     <circle cx="208" cy="108" r="30" fill="#4be07a" stroke="#0f6a2e" stroke-width="3"/>
+     <path d="M208 90l5.5 11.5 12.5 1.8-9 8.8 2.1 12.4-11.1-5.9-11.1 5.9 2.1-12.4-9-8.8 12.5-1.8z" fill="#fff"/>
+    </g>
+    <path d="M232 70q22-4 26 18" fill="none" stroke="#1f9d47" stroke-width="5" stroke-linecap="round"/>
+   </svg></div>
+   <span class="mm-play">▶ เริ่ม</span><span class="mm-tile-label">สติกเกอร์</span>
+  </button>
+ </section>
+ <section class="mm-stamp-column" aria-label="ออกแบบตรายาง">
+  <button class="mm-tile mm-stamp-tile" onclick="openMMTool('stamp')" aria-label="ออกแบบตรายาง">
+   <div class="mm-art mm-stamp-art"><svg viewBox="0 0 340 520" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+   <g transform="rotate(-3 170 400)">
+    <rect x="30" y="326" width="290" height="160" rx="8" fill="#12361f" opacity=".16" transform="translate(6 8)"/>
+    <rect x="25" y="320" width="290" height="160" rx="8" fill="#fff" stroke="#12361f" stroke-width="4"/>
+    <path d="M50 452h120M50 466h80" stroke="#cfe3d5" stroke-width="4" stroke-linecap="round"/>
+    <g transform="rotate(-10 252 400)">
+     <circle cx="252" cy="400" r="44" fill="none" stroke="#2a55d6" stroke-width="5" opacity=".92"/>
+     <circle cx="252" cy="400" r="35" fill="none" stroke="#2a55d6" stroke-width="2" opacity=".92"/>
+     <path d="M252 383l5.5 11.5 12.5 1.8-9 8.8 2.1 12.4-11.1-5.9-11.1 5.9 2.1-12.4-9-8.8 12.5-1.8z" fill="#2a55d6" opacity=".92"/>
+     <path d="M232 424h40" stroke="#2a55d6" stroke-width="4" stroke-linecap="round" opacity=".92"/>
+    </g>
+    <ellipse cx="120" cy="352" rx="78" ry="9" fill="#12361f" opacity=".22"/>
+   </g>
+   <g transform="translate(120 350) rotate(-5) scale(1.22)">
+    <rect x="-57" y="-18" width="114" height="18" rx="4" fill="#0f1d5c"/>
+    <rect x="-57" y="-6" width="114" height="6" rx="3" fill="#2a55d6"/>
+    <rect x="-65" y="-58" width="130" height="40" rx="9" fill="#2a55d6" stroke="#0f1d5c" stroke-width="4"/>
+    <rect x="-56" y="-52" width="112" height="7" rx="3.5" fill="#6f98ff" opacity=".75"/>
+    <rect x="-50" y="-78" width="100" height="24" rx="8" fill="#1f3d83" stroke="#0f1d5c" stroke-width="4"/>
+    <rect x="-20" y="-172" width="40" height="98" rx="9" fill="#3b6cf0" stroke="#0f1d5c" stroke-width="4"/>
+    <rect x="-12" y="-162" width="7" height="78" rx="3.5" fill="#fff" opacity=".5"/>
+    <rect x="-32" y="-222" width="64" height="58" rx="29" fill="#2a55d6" stroke="#0f1d5c" stroke-width="4"/>
+    <ellipse cx="-12" cy="-206" rx="9" ry="6" fill="#fff" opacity=".55"/>
+   </g>
+   <g stroke="#1f9d47" stroke-width="6" stroke-linecap="round" fill="none">
+    <path d="M62 86l-14-22"/><path d="M92 62l-4-26"/><path d="M128 56V28"/><path d="M164 66l8-26"/><path d="M194 92l18-20"/>
+   </g>
+   <g fill="#2a55d6"><circle cx="196" cy="352" r="5"/><circle cx="212" cy="338" r="3.5"/><circle cx="48" cy="346" r="4"/><circle cx="34" cy="332" r="2.8"/></g>
+  </svg></div>
+   <span class="mm-play">▶ เริ่ม</span><span class="mm-tile-label">ตรายาง</span>
+  </button>
+ </section>
+</div>
+<div id="appStamp"><div class="mm-topbar"><button class="mm-back" onclick="goMMHome()">← กลับเมนู</button><div class="mm-page-title">ออกแบบตรายาง</div></div></div>
+<div id="appPaper"><div class="mm-topbar"><button class="mm-back" onclick="goMMHome()">← กลับเมนู</button><div class="mm-page-title">วางงานกระดาษ</div></div>
+ <div class="pp-card"><div class="pp-grid">
+  <div class="pp-panel">
+   <div class="pp-head"><i>📐</i>ตั้งค่าชิ้นงาน</div>
+   <div class="pp-unit" role="group" aria-label="หน่วย">
+    <button type="button" data-unit="mm" class="on" onclick="setPaperUnit('mm')">mm</button>
+    <button type="button" data-unit="cm" onclick="setPaperUnit('cm')">cm</button>
+    <button type="button" data-unit="inch" onclick="setPaperUnit('inch')">inch</button>
+   </div>
+   <div class="pp-field"><label for="pieceW">↔ ความกว้างชิ้นงาน</label>
+    <div class="pp-input"><button type="button" class="pp-step" onclick="stepPaper('w',-1)" aria-label="ลด">−</button><input id="pieceW" type="number" min="0" step="any" value="50" inputmode="decimal" oninput="onPaperInput('w')"><span class="pp-u" data-u>mm</span><button type="button" class="pp-step" onclick="stepPaper('w',1)" aria-label="เพิ่ม">+</button></div></div>
+   <div class="pp-field"><label for="pieceH">↕ ความยาวชิ้นงาน</label>
+    <div class="pp-input"><button type="button" class="pp-step" onclick="stepPaper('h',-1)" aria-label="ลด">−</button><input id="pieceH" type="number" min="0" step="any" value="80" inputmode="decimal" oninput="onPaperInput('h')"><span class="pp-u" data-u>mm</span><button type="button" class="pp-step" onclick="stepPaper('h',1)" aria-label="เพิ่ม">+</button></div></div>
+   <div class="pp-bleed"><span class="lock">🔒</span><div>ระยะตัดตก <b>3 mm</b> ต่อขอบทั้ง 4 ด้าน<br>(+6 mm ต่อขนาดชิ้นงาน) · ปรับไม่ได้</div></div>
+   <button class="pp-go" onclick="calculatePaper()">▶ คำนวณการวาง</button>
+   <div class="pp-score">
+    <div class="pp-score-top"><span>🏆 วางได้สูงสุด</span><span id="paperUtil">ใช้พื้นที่ 0%</span></div>
+    <div id="paperCount" class="paper-result">— ชิ้น</div>
+    <div class="pp-xp"><i id="paperXp"></i></div>
+   </div>
+   <div id="paperNote" class="paper-note">กระดาษ 330 × 483 mm · ตัดตก 3 mm ต่อขอบ · เว้นขอบกระดาษ 5 mm ทุกด้าน</div>
+  </div>
+  <div class="pp-preview-wrap">
+   <div class="paper-preview"><span class="pp-tag">📄 กระดาษ 330 × 483 mm</span><div class="paper-sheet" id="paperSheet"></div></div>
+   <div class="pp-legend"><span><em style="background:#bfe9c9"></em>พื้นที่ตัดตก 3 mm</span><span><em style="background:#fff"></em>ขนาดชิ้นงานจริง</span><span><em style="background:#fff;border-style:dashed"></em>เขตห้ามวาง 5 mm</span></div>
+  </div>
+ </div></div></div>
+
+
+<div id="appSticker"><div class="mm-topbar"><button class="mm-back" onclick="goMMHome()">← กลับเมนู</button><div class="mm-page-title">วางสติกเกอร์</div></div>
+ <div class="pp-card"><div class="pp-grid">
+  <div class="pp-panel">
+   <div class="pp-head"><i>🏷️</i>ตั้งค่าสติกเกอร์</div>
+   <div class="pp-field"><label>รูปทรงงาน</label>
+    <div class="pp-unit two stk-shape"><button type="button" class="on" data-s="circle" onclick="setStkShape('circle')">⬤ วงกลม</button><button type="button" data-s="rect" onclick="setStkShape('rect')">▭ สี่เหลี่ยม</button></div></div>
+   <div class="pp-field" id="stkLayoutWrap" style="display:none"><label>รูปแบบเลย์</label>
+    <div class="pp-unit two stk-layout"><button type="button" class="on" data-l="normal" onclick="setStkLayout('normal')">📐 เลย์ปกติ</button><button type="button" data-l="peel" onclick="setStkLayout('peel')">✂ เลย์ลอก</button></div></div>
+   <div class="pp-field"><label>หน่วย</label>
+    <div class="pp-unit stk-units"><button type="button" data-unit="mm" class="on" onclick="setStkUnit('mm')">mm</button><button type="button" data-unit="cm" onclick="setStkUnit('cm')">cm</button><button type="button" data-unit="inch" onclick="setStkUnit('inch')">inch</button></div></div>
+   <div class="pp-field" id="stkFieldD"><label for="stkD">⌀ เส้นผ่านศูนย์กลางงานจริง</label>
+    <div class="pp-input"><button type="button" class="pp-step" onclick="stepStk('d',-1)" aria-label="ลด">−</button><input id="stkD" type="number" min="0" step="any" value="50" inputmode="decimal" oninput="onStkInput('d')"><span class="pp-u" data-su>mm</span><button type="button" class="pp-step" onclick="stepStk('d',1)" aria-label="เพิ่ม">+</button></div></div>
+   <div id="stkFieldsRect" style="display:none;flex-direction:column;gap:14px">
+    <div class="pp-field"><label for="stkW">↔ ความกว้างงานจริง</label>
+     <div class="pp-input"><button type="button" class="pp-step" onclick="stepStk('w',-1)" aria-label="ลด">−</button><input id="stkW" type="number" min="0" step="any" value="50" inputmode="decimal" oninput="onStkInput('w')"><span class="pp-u" data-su>mm</span><button type="button" class="pp-step" onclick="stepStk('w',1)" aria-label="เพิ่ม">+</button></div></div>
+    <div class="pp-field"><label for="stkH">↕ ความยาวงานจริง</label>
+     <div class="pp-input"><button type="button" class="pp-step" onclick="stepStk('h',-1)" aria-label="ลด">−</button><input id="stkH" type="number" min="0" step="any" value="80" inputmode="decimal" oninput="onStkInput('h')"><span class="pp-u" data-su>mm</span><button type="button" class="pp-step" onclick="stepStk('h',1)" aria-label="เพิ่ม">+</button></div></div>
+   </div>
+   <div class="pp-bleed"><span class="lock">📏</span><div id="stkRule">—</div></div>
+   <button class="pp-go" onclick="calculateSticker()">▶ คำนวณการวาง</button>
+   <div class="pp-score">
+    <div class="pp-score-top"><span>🏆 วางได้สูงสุด</span><span id="stkUtil">ใช้พื้นที่ 0%</span></div>
+    <div id="stkCount" class="paper-result">— ชิ้น/แผ่น</div>
+    <div class="stk-sqm"><span id="stkSqm">—</span><small>(ชิ้น/แผ่น × 6)</small></div>
+    <div class="pp-xp"><i id="stkXp"></i></div>
+   </div>
+   <div id="stkNote" class="paper-note">แผ่น 330.2 × 482.6 mm (13 × 19 นิ้ว) · วางงานในกรอบมาร์คสีดำ 4 มุม</div>
+  </div>
+  <div class="pp-preview-wrap">
+   <div class="paper-preview"><span class="pp-tag">🏷️ แผ่นสติกเกอร์ 330.2 × 482.6 mm</span><svg id="stkSvg" class="stk-svg" viewBox="0 0 330.2 482.6" role="img" aria-label="พรีวิวการวางสติกเกอร์"></svg></div>
+   <div class="pp-legend"><span><em style="background:#bfe9c9"></em>พื้นที่วางจริง (รวมส่วนเผื่อ)</span><span><em style="background:#fff;border-style:dashed"></em>ขนาดงานจริง</span><span><em style="background:#fff;border-style:dashed;border-color:#1f9d47"></em>กรอบวางงาน (ในมาร์ค)</span><span><i class="dot"></i>มาร์คอ่านไดคัท</span><span><em style="background:#fde7e8;border-color:#d6393f;border-style:dashed;border-radius:50%"></em>เขตห้ามวาง 1 cm รอบมาร์ค</span></div>
+  </div>
+ </div></div></div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-deco">
+        <span>🌿</span><span>🍃</span><span>🌱</span>
+        <span>⭐</span><span>✦</span><span>💛</span>
+        <span>✧</span><span>🌿</span><span>✦</span><span>🍀</span>
+    </div>
+    <div class="hero-text">
+        <div class="hero-badge">🪪 STAMP DESIGNER &nbsp;✦</div>
+        <div class="hero-title">ออกแบบตรายาง</div>
+        <div class="hero-sub">ออกแบบตรายางของคุณได้ง่าย ๆ<br>พร้อมพรีวิวก่อนสั่งผลิต<br>BY ปฐพล วัลลิกุล</div>
+    </div>
+    <div class="hero-bubble">💚</div>
+    <div class="hero-img">
+        <img id="miraImg" src="" alt="Mira">
+    </div>
+</div>
+
+<!-- MAIN CARD -->
+<div class="main-card">
+    <div class="card-body">
+
+        <!-- LEFT: FORM -->
+        <div class="panel-left">
+            <div class="section-header">ตั้งค่าตรายาง</div>
+
+            <!-- รูปแบบ -->
+            <div class="field-group">
+                <label class="field-label">รูปแบบ</label>
+                <select class="styled-select" id="mode" onchange="toggle()">
+                    <option value="text">🖊 พิมพ์ข้อความ</option>
+                    <option value="image">🖼 อัปโหลดภาพ</option>
+                </select>
+            </div>
+
+            <!-- ทรง (image mode เท่านั้น) -->
+            <div class="field-group" id="boxShape" style="display:none;">
+                <label class="field-label">ทรง <span style="font-size:11px;color:#888;">(สำหรับอัปโหลดภาพ)</span></label>
+                <div class="shape-group">
+                    <button class="shape-btn active" id="shapeRect" onclick="selectShape('rect')">
+                        <span class="shape-icon">▭</span> สี่เหลี่ยม
+                    </button>
+                    <button class="shape-btn" id="shapeCircle" onclick="selectShape('circle')">
+                        <span class="shape-icon">⬤</span> วงกลม
+                    </button>
+                    <button class="shape-btn" id="shapeOval" onclick="selectShape('oval')">
+                        <span class="shape-icon">⬭</span> วงรี
+                    </button>
+                </div>
+                <input type="hidden" id="shape" value="rect">
+            </div>
+
+            <!-- ข้อความ -->
+            <div class="field-group" id="boxText">
+                <label class="field-label">ข้อความ</label>
+                <textarea class="styled-textarea" id="txtInput" rows="3">ใส่ชื่อบริษัทที่นี่
+สำนักงานใหญ่</textarea>
+            </div>
+
+            <!-- ขนาดตัวอักษร -->
+            <div class="field-group" id="boxFontSize">
+                <label class="field-label">ขนาดตัวอักษร <span style="font-size:11px;color:#888;">(pt)</span></label>
+                <input class="styled-input" type="number" id="fontSize" value="16" min="11" max="32" step="1" inputmode="numeric" aria-label="ขนาดตัวอักษร 11 ถึง 32 pt">
+                <small style="color:#64748b;font-size:12px;">กำหนดค่าได้โดยตรง (11–32 pt)</small>
+            </div>
+
+            <!-- ไฟล์ -->
+            <div class="field-group" id="boxFile" style="display:none;">
+                <label class="field-label">เลือกไฟล์ (Logo / รูป)</label>
+                <input type="file" id="fileInput" accept="image/*" class="styled-input" style="padding:7px 12px;">
+            </div>
+
+            <!-- ความกว้าง -->
+            <div class="field-group" id="boxWidth" style="display:none;">
+                <label class="field-label">ความกว้างจริง (cm)</label>
+                <div class="input-suffix">
+                    <input type="number" id="widthCm" value="4.0" step="0.1" min="0.5" class="styled-input">
+                    <span class="suffix-label">cm</span>
+                </div>
+            </div>
+
+            <!-- ประเภทตรายาง -->
+            <div class="field-group">
+                <label class="field-label">ประเภทตรายาง</label>
+                <select class="styled-select" id="stampType" onchange="toggle()">
+                    <option value="normal">🖊 ด้ามธรรมดา</option>
+                    <option value="trodat">🔵 Trodat (หมึกในตัว)</option>
+                    <option value="ha">🔴 หัวแดง (HA)</option>
+                    <option value="hb">💎 หัวเพชร (HB)</option>
+                </select>
+            </div>
+
+            <!-- สีหมึก -->
+            <div class="field-group" id="boxInkColor" style="display:none;">
+                <label class="field-label">สีหมึก <span style="font-size:11px;color:#888;">(สำหรับแบบหมึกในตัว)</span></label>
+                <div class="ink-group">
+                    <button class="ink-btn active" id="inkBlue"  style="background:#1a35a0;" onclick="selectInk('น้ำเงิน','inkBlue')"></button>
+                    <span class="ink-label">น้ำเงิน</span>
+                    <button class="ink-btn"        id="inkRed"   style="background:#cc0000;" onclick="selectInk('แดง','inkRed')"></button>
+                    <span class="ink-label">แดง</span>
+                    <button class="ink-btn"        id="inkBlack" style="background:#111;"    onclick="selectInk('ดำ','inkBlack')"></button>
+                    <span class="ink-label">ดำ</span>
+                    <input type="hidden" id="inkColor" value="น้ำเงิน">
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: PREVIEW -->
+        <div class="panel-right">
+            <div class="preview-header">⭐ พรีวิวตัวอย่าง</div>
+            <div class="preview-box" id="previewBox">
+                <div class="preview-placeholder" id="previewPlaceholder">
+                    🖊 กดปุ่ม "สร้างตัวอย่าง"<br>เพื่อดูพรีวิว
+                </div>
+                <img id="previewImg" alt="พรีวิว" style="display:none;">
+            </div>
+            <div class="preview-actions">
+                <button class="btn btn-green"  onclick="generate()">✦ สร้างตัวอย่าง</button>
+                <button class="btn btn-outline" onclick="download()">⬇ บันทึกรูปภาพ</button>
+            </div>
+        </div>
+
+    </div><!-- /card-body -->
+
+    <div class="card-footer">
+        📍 กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนสร้างตัวอย่าง
+    </div>
+</div><!-- /main-card -->
+
+<canvas id="c"></canvas>
+
+<script>
+/* ── โหลด Mira จาก same folder ── */
+(function(){
+    const img = document.getElementById('miraImg');
+    img.src = 'Mira-02.png';
+    img.onerror = function(){
+        // ถ้าไม่มีไฟล์อยู่ข้าง ๆ ก็ซ่อนไป
+        this.style.display = 'none';
+    };
+})();
+
+/* ── Font size input: constrain to 11–32 pt ── */
+const fontSizeInput = document.getElementById('fontSize');
+fontSizeInput.addEventListener('change', function () {
+    let val = parseInt(this.value, 10);
+    if (!Number.isFinite(val)) val = 16;
+    this.value = Math.max(11, Math.min(32, val));
+});
+
+/* ── Shape selector ── */
+function selectShape(val) {
+    document.getElementById('shape').value = val;
+    ['Rect','Circle','Oval'].forEach(s => {
+        document.getElementById('shape'+s).classList.remove('active');
+    });
+    document.getElementById('shape' + val.charAt(0).toUpperCase() + val.slice(1)).classList.add('active');
+}
+
+/* ── Ink color selector ── */
+function selectInk(val, btnId) {
+    document.getElementById('inkColor').value = val;
+    ['inkBlue','inkRed','inkBlack'].forEach(id => {
+        document.getElementById(id).classList.remove('active');
+    });
+    document.getElementById(btnId).classList.add('active');
+}
+
+/* ── Toggle fields ── */
+function toggle() {
+    const isImg     = document.getElementById('mode').value === 'image';
+    const stampType = document.getElementById('stampType').value;
+    const isTrodat  = stampType !== 'normal';
+    document.getElementById('boxText').style.display     = isImg ? 'none' : 'block';
+    document.getElementById('boxFontSize').style.display  = isImg ? 'none' : 'block';
+    document.getElementById('boxFile').style.display     = isImg ? 'block' : 'none';
+    document.getElementById('boxWidth').style.display    = isImg ? 'block' : 'none';
+    document.getElementById('boxShape').style.display    = isImg ? 'block' : 'none';
+    document.getElementById('boxInkColor').style.display = isTrodat ? 'block' : 'none';
+}
+
+/* ── ตารางราคา (เหมือนเดิมทุกอย่าง) ── */
+function calcPrice(mmW, mmH, shape) {
+    const sideA = Math.min(mmW, mmH);
+    const sideB = Math.max(mmW, mmH);
+    if (shape === 'circle') {
+        const cChart = [{s:20,p:160},{s:25,p:190},{s:33,p:270},{s:38,p:330},{s:45,p:420},{s:51,p:506},{s:70,p:715}];
+        for (const r of cChart) if (mmW <= r.s) return r.p;
+    } else if (shape === 'oval') {
+        const oChart = [{w:12,h:18,p:160},{w:19,h:27,p:220},{w:32,h:32,p:330},{w:25,h:40,p:330},{w:30,h:50,p:400},{w:38,h:57,p:450},{w:45,h:65,p:480}];
+        for (const r of oChart) {
+            const rA=Math.min(r.w,r.h), rB=Math.max(r.w,r.h);
+            if (sideA<=rA && sideB<=rB) return r.p;
+        }
+    } else {
+        const rChart = [
+            {w:10,h:20,p:80},{w:10,h:37,p:100},{w:10,h:45,p:110},{w:10,h:55,p:120},{w:10,h:66,p:150},{w:10,h:80,p:185},{w:10,h:98,p:220},
+            {w:15,h:20,p:100},{w:15,h:37,p:150},{w:15,h:45,p:145},{w:15,h:55,p:175},{w:15,h:66,p:200},{w:15,h:80,p:245},{w:15,h:98,p:280},
+            {w:20,h:20,p:120},{w:20,h:37,p:150},{w:20,h:45,p:185},{w:20,h:55,p:220},{w:20,h:66,p:240},{w:20,h:80,p:285},{w:20,h:98,p:340},
+            {w:25,h:25,p:150},{w:25,h:37,p:175},{w:25,h:45,p:230},{w:25,h:55,p:270},{w:25,h:70,p:310},{w:25,h:80,p:375},{w:25,h:98,p:410},
+            {w:32,h:37,p:260},{w:32,h:45,p:290},{w:32,h:55,p:330},{w:32,h:70,p:395},
+            {w:35,h:90,p:450},
+            {w:40,h:45,p:330},{w:40,h:66,p:430},{w:40,h:90,p:500},
+            {w:50,h:55,p:500},{w:50,h:66,p:550}
+        ];
+        const sorted = [...rChart].sort((a,b)=>a.w*a.h-b.w*b.h);
+        for (const r of sorted) {
+            const rA=Math.min(r.w,r.h), rB=Math.max(r.w,r.h);
+            if (sideA<=rA && sideB<=rB) return r.p;
+        }
+    }
+    return 'N/A';
+}
+function calcTrodatPrice(mmW, mmH, shape) {
+    const sideA = Math.min(mmW, mmH), sideB = Math.max(mmW, mmH);
+    if (shape === 'circle') {
+        const cChart = [{s:12,p:270,code:'T4612'},{s:19,p:360,code:'T46019'},{s:25,p:470,code:'T46025'},{s:30,p:510,code:'T4630'},{s:38,p:630,code:'T4638'},{s:42,p:700,code:'T4642'},{s:45,p:760,code:'T46045'},{s:50,p:850,code:'T46050'}];
+        for (const r of cChart) if (mmW <= r.s) return {price:r.p,code:r.code};
+    } else if (shape === 'oval') {
+        const oChart = [{w:45,h:30,p:660,code:'T44045'},{w:55,h:35,p:740,code:'T44055'}];
+        for (const r of oChart) { const rA=Math.min(r.w,r.h),rB=Math.max(r.w,r.h); if (sideA<=rA&&sideB<=rB) return {price:r.p,code:r.code}; }
+    } else {
+        const rChart = [{w:26,h:9,p:230,code:'T4910'},{w:38,h:14,p:280,code:'T4911'},{w:47,h:18,p:370,code:'T4912'},{w:58,h:22,p:450,code:'T4913'},{w:64,h:26,p:490,code:'T4914'},{w:70,h:25,p:490,code:'T4915'},{w:70,h:10,p:380,code:'T4916'},{w:50,h:10,p:350,code:'T4917'},{w:75,h:15,p:470,code:'T4918'},{w:20,h:20,p:330,code:'T4922'},{w:30,h:30,p:485,code:'T4923'},{w:40,h:40,p:670,code:'T4924'},{w:82,h:25,p:640,code:'T4925'},{w:75,h:38,p:850,code:'T4926'},{w:60,h:40,p:850,code:'T4927'},{w:50,h:30,p:660,code:'T4929'},{w:70,h:30,p:770,code:'T4931'},{w:41,h:24,p:490,code:'T4941'}];
+        const sorted = [...rChart].sort((a,b)=>a.w*a.h-b.w*b.h);
+        for (const r of sorted) { const rA=Math.min(r.w,r.h),rB=Math.max(r.w,r.h); if (sideA<=rA&&sideB<=rB) return {price:r.p,code:r.code}; }
+    }
+    return {price:'N/A',code:'N/A'};
+}
+function calcHAPrice(mmW, mmH, shape) {
+    const sideA=Math.min(mmW,mmH), sideB=Math.max(mmW,mmH);
+    if (shape==='circle') {
+        const cChart=[{s:12,p:270,code:'HA12'},{s:36,p:480,code:'HAR36'},{s:38,p:520,code:'HAR38'},{s:40,p:580,code:'HAR40'},{s:42,p:600,code:'HAR42'},{s:51,p:620,code:'HAR51'}];
+        for (const r of cChart) if (mmW<=r.s) return {price:r.p,code:r.code};
+    } else if (shape==='oval') {
+        const oChart=[{w:46,h:34,p:500,code:'HAOV4634'},{w:52,h:37,p:580,code:'HAOV5237'}];
+        for (const r of oChart) { const rA=Math.min(r.w,r.h),rB=Math.max(r.w,r.h); if (sideA<=rA&&sideB<=rB) return {price:r.p,code:r.code}; }
+    } else {
+        const rChart=[{w:45,h:10,p:330,code:'HA4510'},{w:70,h:10,p:410,code:'HA7010'},{w:50,h:20,p:500,code:'HA5020'},{w:63,h:33,p:680,code:'HA6333'},{w:70,h:35,p:740,code:'HA7035'},{w:20,h:20,p:340,code:'HA2020'},{w:25,h:25,p:400,code:'HA2525'},{w:33,h:28,p:470,code:'HA3328'}];
+        const sorted=[...rChart].sort((a,b)=>a.w*a.h-b.w*b.h);
+        for (const r of sorted) { const rA=Math.min(r.w,r.h),rB=Math.max(r.w,r.h); if (sideA<=rA&&sideB<=rB) return {price:r.p,code:r.code}; }
+    }
+    return {price:'N/A',code:'N/A'};
+}
+function calcHBPrice(mmW, mmH, shape) {
+    const sideA=Math.min(mmW,mmH), sideB=Math.max(mmW,mmH);
+    if (shape==='circle') {
+        const cChart=[{s:36,p:500,code:'HB36'},{s:38,p:550,code:'HB38'},{s:42,p:590,code:'HB42'}];
+        for (const r of cChart) if (mmW<=r.s) return {price:r.p,code:r.code};
+    } else if (shape==='oval') {
+        const oChart=[{w:50,h:35,p:590,code:'HB5035'}];
+        for (const r of oChart) { const rA=Math.min(r.w,r.h),rB=Math.max(r.w,r.h); if (sideA<=rA&&sideB<=rB) return {price:r.p,code:r.code}; }
+    } else {
+        const rChart=[{w:18,h:18,p:320,code:'HB1818'},{w:20,h:20,p:340,code:'HB2020'},{w:25,h:25,p:400,code:'HB2525'},{w:33,h:28,p:480,code:'HB3328'},{w:48,h:10,p:310,code:'HB4810'},{w:50,h:25,p:500,code:'HB5025'},{w:60,h:30,p:685,code:'HB6030'},{w:75,h:35,p:750,code:'HB7535'}];
+        const sorted=[...rChart].sort((a,b)=>a.w*a.h-b.w*b.h);
+        for (const r of sorted) { const rA=Math.min(r.w,r.h),rB=Math.max(r.w,r.h); if (sideA<=rA&&sideB<=rB) return {price:r.p,code:r.code}; }
+    }
+    return {price:'N/A',code:'N/A'};
+}
+
+/* ── B&W (Otsu) ── */
+function toBW(imgData) {
+    const d=imgData.data, len=d.length;
+    const luma=new Uint8Array(len/4);
+    for (let i=0,j=0;i<len;i+=4,j++) {
+        if (d[i+3]<30){luma[j]=255;continue;}
+        luma[j]=Math.round(d[i]*0.299+d[i+1]*0.587+d[i+2]*0.114);
+    }
+    const hist=new Int32Array(256);
+    for (let j=0;j<luma.length;j++) hist[luma[j]]++;
+    const total=luma.length;
+    let sumAll=0;
+    for (let t=0;t<256;t++) sumAll+=t*hist[t];
+    let sumB=0,wB=0,maxVar=0,threshold=128;
+    for (let t=0;t<256;t++) {
+        wB+=hist[t]; if (!wB) continue;
+        const wF=total-wB; if (!wF) break;
+        sumB+=t*hist[t];
+        const mB=sumB/wB, mF=(sumAll-sumB)/wF;
+        const v=wB*wF*(mB-mF)*(mB-mF);
+        if (v>maxVar){maxVar=v;threshold=t;}
+    }
+    const lo=Math.max(0,threshold-50), hi=Math.min(255,threshold+50), range=hi-lo||1;
+    for (let i=0,j=0;i<len;i+=4,j++) {
+        if (d[i+3]<30){d[i]=d[i+1]=d[i+2]=255;d[i+3]=0;continue;}
+        const s=Math.min(255,Math.max(0,((luma[j]-lo)/range)*255));
+        const bw=s>=128?255:0;
+        d[i]=d[i+1]=d[i+2]=bw; d[i+3]=bw===255?0:255;
+    }
+    return imgData;
+}
+function getContentBounds(imgData,w,h) {
+    let minX=w,maxX=0,minY=h,maxY=0;
+    const d=imgData.data;
+    for (let y=0;y<h;y++) for (let x=0;x<w;x++) {
+        const a=d[(y*w+x)*4+3];
+        if (a>10){if(x<minX)minX=x;if(x>maxX)maxX=x;if(y<minY)minY=y;if(y>maxY)maxY=y;}
+    }
+    return {minX,maxX,minY,maxY,w:maxX-minX+1,h:maxY-minY+1};
+}
+function loadImg(f) {
+    return new Promise(res=>{
+        const r=new FileReader();
+        r.onload=e=>{const i=new Image();i.onload=()=>res(i);i.src=e.target.result;};
+        r.readAsDataURL(f);
+    });
+}
+
+/* ── GENERATE ── */
+const canvas=document.getElementById('c');
+const ctx=canvas.getContext('2d');
+
+/* Preload font ทันทีที่หน้าโหลด ไม่รอให้กดปุ่ม */
+const _fontPreload = Promise.all([
+    document.fonts.load("bold 64px 'TH SarabunPSK'"),
+    document.fonts.load("normal 64px 'TH SarabunPSK'")
+]).catch(()=>{});
+
+async function generate() {
+    const fontPt = parseFloat(document.getElementById('fontSize').value) || 16;
+    await _fontPreload; /* font โหลดเสร็จแล้วตั้งแต่เปิดหน้า — await คืนทันที */
+
+    const mode  = document.getElementById('mode').value;
+    const shape = mode==='text' ? 'rect' : document.getElementById('shape').value;
+    const S=4, PX_CM=37.8*S;
+    let wCm = parseFloat(document.getElementById('widthCm').value)||4.0;
+    let contentW, contentH, drawContent;
+
+    if (mode==='text') {
+        const lines=document.getElementById('txtInput').value.split('\n');
+        const PT_TO_PX=(96/72)*S;
+        const FONT_SZ=Math.round(fontPt*PT_TO_PX);
+        const FONT_STR=`bold ${FONT_SZ}px 'TH SarabunPSK','Sarabun',sans-serif`;
+        const lineH=FONT_SZ*1.2;  // AI Auto leading = fontSize × 1.2
+        /* วัดความกว้างสูงสุดของแต่ละบรรทัดก่อน สร้าง canvas พอดี ไม่ต้องใช้ 4000px */
+        const measureCtx=document.createElement('canvas').getContext('2d');
+        measureCtx.font=FONT_STR;
+        const maxLineW=Math.max(...lines.map(l=>measureCtx.measureText(l).width));
+        const tmpW=Math.ceil(maxLineW)+80*S;
+        const tmp=document.createElement('canvas');
+        tmp.width=tmpW; tmp.height=Math.ceil(lines.length*lineH)+60*S;
+        const tc=tmp.getContext('2d');
+        tc.clearRect(0,0,tmpW,tmp.height);
+        tc.font=FONT_STR; tc.fillStyle='black';
+        tc.textAlign='center'; tc.textBaseline='top';
+        lines.forEach((line,i)=>tc.fillText(line,tmpW/2,20*S+i*lineH));
+        const rawId=tc.getImageData(0,0,tmpW,tmp.height);
+        const bwId=toBW(rawId);
+        tc.putImageData(bwId,0,0);
+        const bb=getContentBounds(bwId,tmpW,tmp.height);
+        contentW=bb.w; contentH=bb.h;
+        wCm=contentW/PX_CM;
+        drawContent=(c,ox,oy)=>{
+            c.getContext('2d').drawImage(tmp,bb.minX,bb.minY,contentW,contentH,ox,oy,contentW,contentH);
+        };
+    } else {
+        const file=document.getElementById('fileInput').files[0];
+        if (!file) return alert('กรุณาเลือกไฟล์');
+        const img=await loadImg(file);
+        const tmp=document.createElement('canvas');
+        tmp.width=img.width; tmp.height=img.height;
+        const tc=tmp.getContext('2d');
+        tc.drawImage(img,0,0);
+        const rawId=tc.getImageData(0,0,img.width,img.height);
+        const bwId=toBW(rawId);
+        tc.putImageData(bwId,0,0);
+        const bb=getContentBounds(bwId,img.width,img.height);
+        const wPx=wCm*PX_CM;
+        if (shape==='rect') {
+            const scaleX=wPx/bb.w;
+            contentW=wPx; contentH=bb.h*scaleX;
+            drawContent=(c,ox,oy)=>{
+                c.getContext('2d').drawImage(tmp,bb.minX,bb.minY,bb.w,bb.h,ox,oy,contentW,contentH);
+            };
+        } else {
+            /* วงกลม/วงรี: หาวงกลม/วงรีที่ "เล็กที่สุดที่ครอบทุกพิกเซลของโลโก้" แล้วย่อโลโก้ให้อยู่ในกรอบ
+               (เดิมใช้สี่เหลี่ยมผืนผ้าครอบ ทำให้มุมของโลโก้ เช่น ปลายริบบิ้น ล้นเส้นประ) */
+            const asp = shape==='circle' ? 1 : bb.w/bb.h;      // แปลงวงรี -> วงกลมโดยยืดแกน Y
+            const px=bwId.data, W=img.width;
+            const bcx=bb.minX+bb.w/2, bcy=(bb.minY+bb.h/2)*asp;
+            const BINS=720, bd=new Float64Array(BINS).fill(-1), bX=new Float64Array(BINS), bY=new Float64Array(BINS);
+            for (let y=bb.minY;y<=bb.maxY;y++) for (let x=bb.minX;x<=bb.maxX;x++) {
+                if (px[(y*W+x)*4+3]<=10) continue;
+                const dx=x-bcx, dy=y*asp-bcy, dist=dx*dx+dy*dy;
+                const bin=Math.min(BINS-1,Math.floor((Math.atan2(dy,dx)+Math.PI)/(2*Math.PI)*BINS));
+                if (dist>bd[bin]){bd[bin]=dist;bX[bin]=x;bY[bin]=y*asp;}
+            }
+            const pts=[]; for (let i=0;i<BINS;i++) if (bd[i]>=0) pts.push([bX[i],bY[i]]);
+            /* Badoiu–Clarkson: ประมาณวงกลมครอบเล็กสุด */
+            let cx=bcx, cy=bcy;
+            for (let it=0;it<1500;it++) {
+                let far=pts[0], fd=-1;
+                for (const p of pts){const d=(p[0]-cx)**2+(p[1]-cy)**2; if(d>fd){fd=d;far=p;}}
+                const k=1/(it+2); cx+=(far[0]-cx)*k; cy+=(far[1]-cy)*k;
+            }
+            let R=0; for (const p of pts) R=Math.max(R,Math.hypot(p[0]-cx,p[1]-cy));
+            R*=1.012;                                           // เผื่อขอบเล็กน้อย
+            const sc=(wPx/2)/R, cyO=cy/asp;                     // cyO = จุดศูนย์กลางในพิกัดภาพจริง
+            contentW=wPx; contentH=2*(R/asp)*sc;
+            drawContent=(c,ox,oy)=>{
+                c.getContext('2d').drawImage(tmp,0,0,img.width,img.height,
+                    ox+contentW/2-cx*sc, oy+contentH/2-cyO*sc, img.width*sc, img.height*sc);
+            };
+        }
+    }
+
+    const PAD_TOP=90*S, PAD_RIGHT=110*S, PAD_BOT=110*S, PAD_LEFT=30*S;
+    const _stType=document.getElementById('stampType').value;
+    const _isNotNormal=_stType!=='normal';
+    let _fRes=null;
+    if (_stType==='ha')      _fRes=calcHAPrice(wCm*10,(contentH/PX_CM)*10,shape);
+    else if (_stType==='hb') _fRes=calcHBPrice(wCm*10,(contentH/PX_CM)*10,shape);
+    else if (_stType==='trodat') _fRes=calcTrodatPrice(wCm*10,(contentH/PX_CM)*10,shape);
+    const _fLabel=_isNotNormal?_fRes.code:'ตรายางด้ามธรรมดา';
+    const _fPrice=_isNotNormal?('ราคา  '+_fRes.price+'.-'):('ราคา '+calcPrice(wCm*10,(contentH/PX_CM)*10,shape)+' บาท');
+    ctx.font=`bold ${28*S}px 'TH SarabunPSK','Sarabun',sans-serif`;
+    const _footNeed=PAD_LEFT+ctx.measureText(_fLabel).width+30*S+ctx.measureText(_fPrice).width+PAD_LEFT;
+    canvas.width=Math.max(PAD_LEFT+contentW+PAD_RIGHT,_footNeed);
+    canvas.height=PAD_TOP+contentH+PAD_BOT;
+    ctx.fillStyle='white'; ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    const ox=PAD_LEFT, oy=PAD_TOP;
+    const cx2=ox+contentW/2, cy2=oy+contentH/2;
+    drawContent(canvas,ox,oy);
+
+    ctx.save(); ctx.setLineDash([10*S,6*S]);
+    ctx.strokeStyle='red'; ctx.lineWidth=2*S;
+    if (shape==='rect') ctx.strokeRect(ox,oy,contentW,contentH);
+    else { ctx.beginPath(); if(shape==='circle') ctx.arc(cx2,cy2,contentW/2,0,Math.PI*2); else ctx.ellipse(cx2,cy2,contentW/2,contentH/2,0,0,Math.PI*2); ctx.stroke(); }
+    ctx.restore();
+
+    const DIM_GAP=45*S, TICK=14*S;
+    ctx.strokeStyle='red'; ctx.lineWidth=2*S; ctx.setLineDash([]);
+    const dimY=oy-DIM_GAP;
+    ctx.beginPath(); ctx.moveTo(ox,dimY+TICK); ctx.lineTo(ox,dimY); ctx.lineTo(ox+contentW,dimY); ctx.lineTo(ox+contentW,dimY+TICK); ctx.stroke();
+    const dimX=ox+contentW+DIM_GAP;
+    ctx.beginPath(); ctx.moveTo(dimX-TICK,oy); ctx.lineTo(dimX,oy); ctx.lineTo(dimX,oy+contentH); ctx.lineTo(dimX-TICK,oy+contentH); ctx.stroke();
+
+    const hCm=(contentH/PX_CM).toFixed(1), LABEL_SZ=24*S;
+    ctx.fillStyle='red'; ctx.font=`bold ${LABEL_SZ}px sans-serif`;
+    ctx.textAlign='center'; ctx.textBaseline='bottom';
+    ctx.fillText(wCm.toFixed(1)+' cm.',cx2,dimY-6*S);
+    ctx.save(); ctx.translate(dimX+38*S,cy2); ctx.rotate(Math.PI/2);
+    ctx.textBaseline='middle'; ctx.textAlign='center';
+    ctx.fillText(hCm+' cm.',0,0); ctx.restore();
+
+    const footY=oy+contentH+20*S, GAP_PX=30*S;
+    const stampType=document.getElementById('stampType').value;
+    const isTrodat=stampType!=='normal';
+    const inkColor=document.getElementById('inkColor').value;
+    const inkColorMap={'น้ำเงิน':'#00008B','แดง':'#CC0000','ดำ':'#111111'};
+    const inkHex=inkColorMap[inkColor]||'#00008B';
+    let labelText,priceText,codeText;
+    const _mmW2=wCm*10, _mmH2=parseFloat(hCm)*10;
+    if (isTrodat) {
+        let res; if (stampType==='ha') res=calcHAPrice(_mmW2,_mmH2,shape); else if (stampType==='hb') res=calcHBPrice(_mmW2,_mmH2,shape); else res=calcTrodatPrice(_mmW2,_mmH2,shape);
+        codeText=res.code; priceText='ราคา  '+res.price+'.-';
+        if (stampType==='ha') labelText='หัวแดง (HA)'; else if (stampType==='hb') labelText='หัวเพชร (HB)'; else labelText='Trodat';
+    } else {
+        codeText=null; priceText='ราคา '+calcPrice(wCm*10,parseFloat(hCm)*10,shape)+' บาท'; labelText='ตรายางด้ามธรรมดา';
+    }
+
+    const maxFootW=canvas.width-PAD_LEFT*2;
+    let FOOT_SZ=28*S;
+    ctx.textBaseline='top';
+    for (let sz=28*S;sz>=18*S;sz-=S) {
+        ctx.font=`bold ${sz}px 'TH SarabunPSK','Sarabun',sans-serif`;
+        const testLabel=isTrodat?codeText:labelText;
+        if (ctx.measureText(testLabel).width+GAP_PX+ctx.measureText(priceText).width<=maxFootW){FOOT_SZ=sz;break;}
+    }
+    ctx.font=`bold ${FOOT_SZ}px 'TH SarabunPSK','Sarabun',sans-serif`;
+    ctx.textAlign='left';
+    const SUB_SZ=Math.round(FOOT_SZ*0.85), NOTE_SZ=Math.round(FOOT_SZ*0.72);
+
+    if (isTrodat) {
+        ctx.fillStyle='#111'; ctx.fillText(codeText,ox,footY);
+        const codeW=ctx.measureText(codeText).width;
+        ctx.fillStyle='red'; ctx.fillText(priceText,ox+codeW+GAP_PX,footY);
+        const subY=footY+FOOT_SZ+2*S;
+        ctx.font=`bold ${SUB_SZ}px 'TH SarabunPSK','Sarabun',sans-serif`;
+        ctx.fillStyle=inkHex;
+        const brandName=stampType==='ha'?'หัวแดง (HA)':stampType==='hb'?'หัวเพชร (HB)':'Trodat';
+        ctx.fillText('('+brandName+' หมึกในตัวสี'+inkColor+')',ox,subY);
+        const noteY=subY+SUB_SZ+2*S;
+        ctx.font=`${NOTE_SZ}px 'TH SarabunPSK','Sarabun',sans-serif`;
+        ctx.fillStyle='red'; ctx.fillText('*งานจริงไม่มีกรอบสีแดง',ox,noteY);
+    } else {
+        ctx.fillStyle='blue'; ctx.fillText(labelText,ox,footY);
+        const labelW=ctx.measureText(labelText).width;
+        ctx.fillStyle='red'; ctx.fillText(priceText,ox+labelW+GAP_PX,footY);
+        const noteY=footY+FOOT_SZ+4*S;
+        ctx.font=`${NOTE_SZ}px 'TH SarabunPSK','Sarabun',sans-serif`;
+        ctx.fillStyle='red'; ctx.fillText('* งานจริงไม่มีกรอบสีแดง',ox,noteY);
+    }
+
+    const previewImg=document.getElementById('previewImg');
+    const placeholder=document.getElementById('previewPlaceholder');
+    previewImg.src=canvas.toDataURL('image/png');
+    previewImg.style.display='block';
+    placeholder.style.display='none';
+}
+
+function download() {
+    if (!document.getElementById('previewImg').src || document.getElementById('previewImg').style.display==='none') {
+        return alert('กรุณาสร้างตัวอย่างก่อนบันทึก');
+    }
+    const a=document.createElement('a');
+    a.download='stamp-preview.png';
+    a.href=canvas.toDataURL('image/png',1.0);
+    a.click();
+}
+
+// Move existing stamp designer elements into the Stamp tool panel
+(function(){const app=document.getElementById('appStamp');const hero=document.querySelector('.hero');const card=document.querySelector('.main-card');const canvas=document.getElementById('c');if(hero)app.appendChild(hero);if(card)app.appendChild(card);if(canvas)app.appendChild(canvas);})();
+function openMMTool(which){document.getElementById('homeMenu').style.display='none';document.getElementById('appStamp').style.display=which==='stamp'?'block':'none';document.getElementById('appPaper').style.display=which==='paper'?'block':'none';document.getElementById('appSticker').style.display=which==='sticker'?'block':'none';if(which==='paper')calculatePaper();if(which==='sticker')calculateSticker();window.scrollTo({top:0,behavior:'auto'});}
+function goMMHome(){document.getElementById('homeMenu').style.display='';['appStamp','appPaper','appSticker'].forEach(id=>document.getElementById(id).style.display='none');window.scrollTo({top:0,behavior:'auto'});}
+
+// ===== Paper tool: unit selector (mm / cm / inch). Bleed stays fixed at 3 mm. =====
+const UNIT_MM={mm:1,cm:10,inch:25.4};
+const UNIT_DEC={mm:2,cm:3,inch:3};
+const UNIT_STEP={mm:1,cm:0.5,inch:0.25};
+let paperUnit='mm';
+const paperMM={w:50,h:80};
+const _rnd=v=>Math.round(v*1e6)/1e6;
+function fmtU(mm,u){u=u||paperUnit;return String(parseFloat((mm/UNIT_MM[u]).toFixed(UNIT_DEC[u])));}
+function onPaperInput(k){
+  const el=document.getElementById(k==='w'?'pieceW':'pieceH');
+  paperMM[k]=el.value===''?NaN:_rnd(Number(el.value)*UNIT_MM[paperUnit]);
+  calculatePaper();
+}
+function setPaperUnit(u){
+  if(!UNIT_MM[u]||u===paperUnit)return;
+  paperUnit=u;
+  ['w','h'].forEach(k=>{const el=document.getElementById(k==='w'?'pieceW':'pieceH');el.value=Number.isFinite(paperMM[k])?fmtU(paperMM[k]):'';});
+  document.querySelectorAll('#appPaper .pp-unit button').forEach(b=>b.classList.toggle('on',b.dataset.unit===u));
+  document.querySelectorAll('#appPaper [data-u]').forEach(s=>s.textContent=u);
+  calculatePaper();
+}
+function stepPaper(k,dir){
+  const st=UNIT_STEP[paperUnit]*UNIT_MM[paperUnit];
+  const cur=Number.isFinite(paperMM[k])?paperMM[k]:0;
+  paperMM[k]=_rnd(Math.max(0,cur+dir*st));
+  document.getElementById(k==='w'?'pieceW':'pieceH').value=fmtU(paperMM[k]);
+  calculatePaper();
+}
+function setPaperCount(n,msg,util){
+  const el=document.getElementById('paperCount');
+  el.classList.toggle('err',!!msg);
+  el.innerHTML=msg?msg:'<b>'+n+'</b><small>ชิ้น</small>';
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+  const u=msg?0:Math.max(0,Math.min(100,util||0));
+  document.getElementById('paperXp').style.width=u+'%';
+  document.getElementById('paperUtil').textContent='ใช้พื้นที่ '+Math.round(u)+'%';
+}
+function calculatePaper(){
+ const SHEET_W=330,SHEET_H=483,SAFE=5,BLEED=3;
+ const usableW=SHEET_W-2*SAFE,usableH=SHEET_H-2*SAFE;
+ const rawW=paperMM.w,rawH=paperMM.h;
+ const sheet=document.getElementById('paperSheet');sheet.innerHTML='';
+ const countEl=document.getElementById('paperCount');
+ if(!(rawW>0&&rawH>0&&Number.isFinite(rawW)&&Number.isFinite(rawH))){setPaperCount(0,'กรุณากรอกขนาดชิ้นงานให้ถูกต้อง');return;}
+ // Bleed is 3 mm on every edge: add 6 mm to each overall dimension.
+ const itemW=rawW+BLEED*2,itemH=rawH+BLEED*2;
+ if(itemW>usableW&&itemH>usableW){setPaperCount(0,'ชิ้นงานใหญ่เกินพื้นที่กระดาษ');return;}
+ // Dynamic programming over 0.1 mm height units. Each row uses one of
+ // the two possible orientations; the best row sequence maximizes pieces.
+ const SCALE=10,limit=Math.floor(usableH*SCALE+1e-7);
+ const rowTypes=[];
+ for(const [w,h] of [[itemW,itemH],[itemH,itemW]]){
+   const cols=Math.floor((usableW+1e-8)/w);
+   const height=Math.round(h*SCALE);
+   if(cols>0&&height>0&&height<=limit&&!rowTypes.some(t=>t.w===w&&t.h===h))rowTypes.push({w,h,cols,height,count:cols});
+ }
+ const dp=new Int32Array(limit+1);dp.fill(-1);dp[0]=0;
+ const prevH=new Int32Array(limit+1);prevH.fill(-1);
+ const prevType=new Int16Array(limit+1);prevType.fill(-1);
+ for(let y=0;y<=limit;y++){
+   if(dp[y]<0)continue;
+   rowTypes.forEach((t,idx)=>{const ny=y+t.height;if(ny<=limit&&dp[y]+t.count>dp[ny]){dp[ny]=dp[y]+t.count;prevH[ny]=y;prevType[ny]=idx;}});
+ }
+ let used=0,bestN=0;
+ for(let y=0;y<=limit;y++)if(dp[y]>bestN){bestN=dp[y];used=y;}
+ if(bestN<=0){setPaperCount(0,'ไม่สามารถวางชิ้นงานบนกระดาษได้');return;}
+ const rows=[];let cursor=used;
+ while(cursor>0&&prevType[cursor]>=0){const t=rowTypes[prevType[cursor]];rows.push(t);cursor=prevH[cursor];}
+ rows.reverse();
+ // Center the complete layout in the sheet, respecting a 5 mm safe margin.
+ const totalH=rows.reduce((sum,row)=>sum+row.h,0);
+ let y=SAFE+(usableH-totalH)/2;let _pi=0;
+ const scale=1;sheet.style.width=SHEET_W+'px';sheet.style.height=SHEET_H+'px';
+ const safe=document.createElement('div');safe.className='paper-safe-area';sheet.appendChild(safe);
+ rows.forEach(row=>{
+   const rowW=row.cols*row.w;
+   let x=SAFE+(usableW-rowW)/2;
+   for(let c=0;c<row.cols;c++){
+     const outer=document.createElement('div');outer.className='paper-piece';
+     outer.style.left=x+'px';outer.style.top=y+'px';outer.style.width=row.w+'px';outer.style.height=row.h+'px';
+     outer.style.animationDelay=Math.min(_pi++*12,400)+'ms';
+     outer.title=`พื้นที่ตัดตก ${row.w.toFixed(1)} × ${row.h.toFixed(1)} mm`;
+     const trim=document.createElement('div');trim.className='paper-trim';
+     trim.textContent=`${fmtU(rawW)} × ${fmtU(rawH)} ${paperUnit}`;
+     outer.appendChild(trim);sheet.appendChild(outer);x+=row.w;
+   }
+   y+=row.h;
+ });
+ setPaperCount(bestN,null,bestN*itemW*itemH/(SHEET_W*SHEET_H)*100);
+ const note=document.getElementById('paperNote');
+ if(note)note.textContent=`ขนาดรวมตัดตก ${itemW.toFixed(1)} × ${itemH.toFixed(1)} mm · ตัดตก 3 mm/ขอบ · ขอบปลอดภัย 5 mm · จัดกึ่งกลางกระดาษ`;
+}
+
+
+/* ===================== Sticker tool ===================== */
+const STK={x0:18.89,y0:28.1,x1:316.07,y1:459.9,SW:330.2,SH:482.6,MR:5,CLEAR:10,PER_SQM:6};
+STK.W=STK.x1-STK.x0; STK.H=STK.y1-STK.y0;
+STK.marks=[[STK.x0,STK.y0],[STK.x1,STK.y0],[STK.x0,STK.y1],[STK.x1,STK.y1]];
+const stk={shape:'circle',layout:'normal',unit:'mm',d:50,w:50,h:80};
+const STK_ID={d:'stkD',w:'stkW',h:'stkH'};
+const $s=id=>document.getElementById(id);
+function stkFmt(mm,u){u=u||stk.unit;return String(parseFloat((mm/UNIT_MM[u]).toFixed(UNIT_DEC[u])));}
+
+function onStkInput(k){const el=$s(STK_ID[k]);stk[k]=el.value===''?NaN:_rnd(Number(el.value)*UNIT_MM[stk.unit]);calculateSticker();}
+function stepStk(k,dir){
+  const st=UNIT_STEP[stk.unit]*UNIT_MM[stk.unit],cur=Number.isFinite(stk[k])?stk[k]:0;
+  stk[k]=_rnd(Math.max(0,cur+dir*st));$s(STK_ID[k]).value=stkFmt(stk[k]);calculateSticker();
+}
+function setStkUnit(u){
+  if(!UNIT_MM[u]||u===stk.unit)return;stk.unit=u;
+  ['d','w','h'].forEach(k=>{$s(STK_ID[k]).value=Number.isFinite(stk[k])?stkFmt(stk[k]):'';});
+  document.querySelectorAll('#appSticker .stk-units button').forEach(b=>b.classList.toggle('on',b.dataset.unit===u));
+  document.querySelectorAll('#appSticker [data-su]').forEach(s=>s.textContent=u);
+  calculateSticker();
+}
+function setStkShape(s){
+  stk.shape=s;
+  document.querySelectorAll('#appSticker .stk-shape button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));
+  $s('stkFieldD').style.display=s==='circle'?'':'none';
+  $s('stkFieldsRect').style.display=s==='rect'?'flex':'none';
+  $s('stkLayoutWrap').style.display=s==='rect'?'':'none';
+  calculateSticker();
+}
+function setStkLayout(l){
+  stk.layout=l;
+  document.querySelectorAll('#appSticker .stk-layout button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  calculateSticker();
+}
+
+/* ---- packing helpers (all in mm) ---- */
+function stkNorm(pts,r){ // shift circle centres so the bounding box starts at 0,0
+  let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
+  for(const p of pts){mnx=Math.min(mnx,p.cx-r);mny=Math.min(mny,p.cy-r);mxx=Math.max(mxx,p.cx+r);mxy=Math.max(mxy,p.cy+r);}
+  return {pieces:pts.map(p=>({cx:p.cx-mnx,cy:p.cy-mny})),uw:mxx-mnx,uh:mxy-mny};
+}
+function stkHexRows(W,H,D){
+  const E=1e-6,dy=D*Math.sqrt(3)/2;
+  if(D>W+E||D>H+E)return null;
+  const rows=Math.floor((H-D+E)/dy)+1,n0=Math.floor((W+E)/D),n1=Math.floor((W-D/2+E)/D),pts=[];
+  for(let r=0;r<rows;r++){const odd=r%2===1,n=odd?n1:n0,off=odd?D/2:0;for(let c=0;c<n;c++)pts.push({cx:off+D/2+c*D,cy:D/2+r*dy});}
+  return pts.length?pts:null;
+}
+function stkCircleCands(W,H,D){
+  const out=[],r=D/2,E=1e-6;
+  const hh=stkHexRows(W,H,D);if(hh)out.push({name:'รังผึ้ง (แถวนอน)',...stkNorm(hh,r)});
+  const hv=stkHexRows(H,W,D);if(hv)out.push({name:'รังผึ้ง (แถวตั้ง)',...stkNorm(hv.map(p=>({cx:p.cy,cy:p.cx})),r)});
+  const cols=Math.floor((W+E)/D),rows=Math.floor((H+E)/D);
+  if(cols>0&&rows>0){const pts=[];for(let j=0;j<rows;j++)for(let i=0;i<cols;i++)pts.push({cx:r+i*D,cy:r+j*D});out.push({name:'ตาราง',...stkNorm(pts,r)});}
+  return out;
+}
+function stkRowDP(W,H,a,b){
+  const S=10,limit=Math.floor(H*S+1e-7),types=[];
+  for(const [w,h] of [[a,b],[b,a]]){
+    const cols=Math.floor((W+1e-8)/w),height=Math.ceil(h*S-1e-9);
+    if(cols>0&&height>0&&height<=limit&&!types.some(t=>t.w===w&&t.h===h))types.push({w,h,cols,height});
+  }
+  if(!types.length)return null;
+  const dp=new Int32Array(limit+1).fill(-1),pH=new Int32Array(limit+1).fill(-1),pT=new Int16Array(limit+1).fill(-1);dp[0]=0;
+  for(let y=0;y<=limit;y++){if(dp[y]<0)continue;types.forEach((t,i)=>{const ny=y+t.height;if(ny<=limit&&dp[y]+t.cols>dp[ny]){dp[ny]=dp[y]+t.cols;pH[ny]=y;pT[ny]=i;}});}
+  let best=0,used=0;for(let y=0;y<=limit;y++)if(dp[y]>best){best=dp[y];used=y;}
+  if(best<=0)return null;
+  const rows=[];let cur=used;while(cur>0&&pT[cur]>=0){rows.push(types[pT[cur]]);cur=pH[cur];}rows.reverse();
+  const uw=Math.max(...rows.map(r=>r.cols*r.w)),pieces=[];let y=0;
+  for(const r of rows){let x=(uw-r.cols*r.w)/2;for(let c=0;c<r.cols;c++){pieces.push({x,y,w:r.w,h:r.h});x+=r.w;}y+=r.h;}
+  return {pieces,uw,uh:y};
+}
+function stkRectCands(W,H,a,b){
+  const out=[],r1=stkRowDP(W,H,a,b);if(r1)out.push({name:'แถวนอน',...r1});
+  const r2=stkRowDP(H,W,a,b);
+  if(r2)out.push({name:'แถวตั้ง',pieces:r2.pieces.map(p=>({x:p.y,y:p.x,w:p.h,h:p.w})),uw:r2.uh,uh:r2.uw});
+  return out;
+}
+function stkHitsMark(p,R){
+  const lim=STK.MR+STK.CLEAR;
+  for(const [mx,my] of STK.marks){
+    if(p.cx!==undefined){if(Math.hypot(p.cx-mx,p.cy-my)<R+lim)return true;}
+    else{const dx=Math.max(p.x-mx,0,mx-(p.x+p.w)),dy=Math.max(p.y-my,0,my-(p.y+p.h));if(Math.hypot(dx,dy)<lim)return true;}
+  }
+  return false;
+}
+function stkBest(shape,pw,ph){
+  const cands=shape==='circle'?stkCircleCands(STK.W,STK.H,pw):stkRectCands(STK.W,STK.H,pw,ph);
+  let best=null;
+  for(const c of cands)for(const fy of [.5,0,1,.25,.75])for(const fx of [.5,0,1,.25,.75]){
+    const tx=STK.x0+(STK.W-c.uw)*fx,ty=STK.y0+(STK.H-c.uh)*fy;
+    const placed=c.pieces.map(p=>p.cx!==undefined?{cx:p.cx+tx,cy:p.cy+ty}:{x:p.x+tx,y:p.y+ty,w:p.w,h:p.h}).filter(p=>!stkHitsMark(p,pw/2));
+    if(!best||placed.length>best.pieces.length)best={pieces:placed,name:c.name};
+  }
+  return best;
+}
+
+/* ---- drawing ---- */
+function stkSheetSVG(inner){
+  const m=STK.marks.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="${STK.MR}" fill="#231f20"/>`).join('');
+  const br='<path d="M8.89 23.1H13.89V18.1M326.07 23.1H321.07V18.1M326.07 464.9H321.07V469.9M8.89 464.9H13.89V469.9M8.89 469.9L13.89 464.9" fill="none" stroke="#231f20" stroke-width=".35"/>';
+  const head='<g opacity=".6"><rect x="99.4" y="1.5" width="23" height="23" fill="#f1f5f2" stroke="#9db3a4" stroke-width=".4"/><rect x="102" y="4" width="6" height="6" fill="#9db3a4"/><rect x="114" y="4" width="6" height="6" fill="#9db3a4"/><rect x="102" y="16" width="6" height="6" fill="#9db3a4"/><rect x="125" y="5" width="95" height="3" rx="1.5" fill="#cfdad2"/><rect x="125" y="11" width="110" height="3" rx="1.5" fill="#cfdad2"/><rect x="125" y="17" width="70" height="3" rx="1.5" fill="#cfdad2"/></g>';
+  const R2=STK.MR+STK.CLEAR;
+  const ko=STK.marks.map(([x,y],i)=>{const dir=i%2===0?1:-1;
+    return `<circle cx="${x}" cy="${y}" r="${R2}" fill="#e5484d" fill-opacity=".10" stroke="#d6393f" stroke-width=".45" stroke-dasharray="1.6 1.1"/>`+
+    `<path d="M${x+dir*STK.MR} ${y}H${x+dir*R2}M${x+dir*STK.MR} ${y-1.2}V${y+1.2}M${x+dir*R2} ${y-1.2}V${y+1.2}" stroke="#d6393f" stroke-width=".4" fill="none"/>`+
+    `<text x="${x+dir*(STK.MR+STK.CLEAR/2)}" y="${y-2.2}" font-size="3" text-anchor="middle" font-family="Kanit,sans-serif" font-weight="700" fill="#d6393f">${STK.CLEAR} mm</text>`;}).join('');
+  const frame=`<rect x="${STK.x0}" y="${STK.y0}" width="${STK.W}" height="${STK.H}" fill="none" stroke="#1f9d47" stroke-width=".5" stroke-dasharray="3 2"/>`;
+  return `<rect width="${STK.SW}" height="${STK.SH}" fill="#fff" stroke="#12361f" stroke-width=".8"/>${head}${frame}${ko}${inner}${br}${m}`;
+}
+function stkSetCount(n,msg,util,perSqm){
+  const el=$s('stkCount');el.classList.toggle('err',!!msg);
+  el.innerHTML=msg?msg:`<b>${n}</b><small>ชิ้น/แผ่น</small>`;
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+  $s('stkSqm').textContent=msg?'—':`${perSqm} ชิ้น/ตารางเมตร`;
+  const u=msg?0:Math.max(0,Math.min(100,util||0));
+  $s('stkXp').style.width=u+'%';$s('stkUtil').textContent='ใช้พื้นที่ '+Math.round(u)+'%';
+}
+function calculateSticker(){
+  const circle=stk.shape==='circle',svg=$s('stkSvg'),u=stk.unit;
+  const ok=circle?stk.d>0:(stk.w>0&&stk.h>0);
+  let pw,ph;
+  if(circle){
+    pw=ph=stk.d+1;
+    $s('stkRule').innerHTML=Number.isFinite(pw)?`วงกลม: วางขนาด <b>งานจริง + 1 mm</b><br>(เช่น 5 cm → 5.1 cm) แล้ววางขอบชนขอบ<br>ขนาดที่วาง = <b>${stkFmt(pw)} ${u}</b>`:'วงกลม: วางขนาดงานจริง + 1 mm ขอบชนขอบ';
+  }else if(stk.layout==='peel'){
+    pw=stk.w+1;ph=stk.h+1;
+    $s('stkRule').innerHTML=`เลย์ลอก: <b>งานจริง + 0.5 mm ต่อด้าน</b> (+1 mm ต่อขนาด) แล้ววางขอบชนขอบ${Number.isFinite(pw+ph)?`<br>ขนาดที่วาง = <b>${stkFmt(pw)} × ${stkFmt(ph)} ${u}</b>`:''}`;
+  }else{
+    pw=stk.w;ph=stk.h;
+    $s('stkRule').innerHTML=`เลย์ปกติ: วาง <b>ขนาดงานจริง</b> ขอบชนขอบ${Number.isFinite(pw+ph)?`<br>ขนาดที่วาง = <b>${stkFmt(pw)} × ${stkFmt(ph)} ${u}</b>`:''}`;
+  }
+  if(!ok){svg.innerHTML=stkSheetSVG('');stkSetCount(0,'กรุณากรอกขนาดให้ถูกต้อง');return;}
+  const res=stkBest(stk.shape,pw,ph);
+  if(!res||!res.pieces.length){svg.innerHTML=stkSheetSVG('');stkSetCount(0,'ชิ้นงานใหญ่เกินพื้นที่วางงาน');$s('stkNote').textContent=`พื้นที่วางงาน ${STK.W.toFixed(1)} × ${STK.H.toFixed(1)} mm (ในมาร์คสีดำ)`;return;}
+  const n=res.pieces.length,many=n>400;
+  const realW=circle?stk.d:stk.w,realH=circle?stk.d:stk.h,minReal=Math.min(realW,realH);
+  const label=circle?`Ø${stkFmt(realW)} ${u}`:`${stkFmt(realW)}×${stkFmt(realH)} ${u}`;
+  const fs=Math.max(2.4,Math.min(6,minReal/(circle?5:6)));
+  const showText=minReal>=14&&n<=150;
+  let parts='';
+  res.pieces.forEach((p,i)=>{
+    const st=many?'animation:none':`animation-delay:${Math.min(i*10,420)}ms`;
+    let g='';
+    if(circle){
+      g=`<circle cx="${p.cx}" cy="${p.cy}" r="${pw/2}" fill="#bfe9c9" stroke="#2f9a52" stroke-width=".35"/><circle cx="${p.cx}" cy="${p.cy}" r="${realW/2}" fill="#fff" stroke="#1f9d47" stroke-width=".3" stroke-dasharray="1.4 1"/>`+(showText?`<text x="${p.cx}" y="${p.cy}" font-size="${fs}" text-anchor="middle" dominant-baseline="central">${label}</text>`:'');
+    }else{
+      const cx=p.x+p.w/2,cy=p.y+p.h/2,peel=stk.layout==='peel';
+      const same=Math.abs(p.w-pw)<1e-6,rw=same?realW:realH,rh=same?realH:realW;
+      g=`<rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" fill="${peel?'#bfe9c9':'#d9f5e1'}" stroke="#2f9a52" stroke-width=".35"/>`+(peel?`<rect x="${cx-rw/2}" y="${cy-rh/2}" width="${rw}" height="${rh}" fill="#fff" stroke="#1f9d47" stroke-width=".3" stroke-dasharray="1.4 1"/>`:'')+(showText?`<text x="${cx}" y="${cy}" font-size="${fs}" text-anchor="middle" dominant-baseline="central">${label}</text>`:'');
+    }
+    parts+=`<g class="stk-piece" style="${st}">${g}</g>`;
+  });
+  svg.innerHTML=stkSheetSVG(parts);
+  const area=circle?Math.PI*(pw/2)**2:pw*ph;
+  stkSetCount(n,null,n*area/(STK.W*STK.H)*100,n*STK.PER_SQM);
+  $s('stkNote').textContent=`จัดแบบ${res.name} · พื้นที่วางงาน ${STK.W.toFixed(1)} × ${STK.H.toFixed(1)} mm · เว้นระยะจากขอบมาร์ค ${STK.CLEAR} mm (1 cm) ทุกด้าน`;
+}
+
+</script>
+</body>
+</html>
